@@ -11,6 +11,7 @@ enum Langs {
 type LinkActiveCallback = (props: { isActive: boolean }) => string;
 
 export const Header = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [lang, setLang] = useState(Langs.en);
 
   const changeLang = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -35,7 +36,6 @@ export const Header = () => {
           <Row>
             <Col className="top-header__col">
               <h2 className="top-header__text">
-                {lang}
                 Summer Sale For All Swim Suits And Free Express Delivery - OFF
                 50%!
                 <a
