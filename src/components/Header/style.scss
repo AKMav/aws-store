@@ -35,5 +35,51 @@
   .header-body {
     padding: 16px;
     padding-top: 40px;
+
+    &__col {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    &__nav {
+      flex: 1 0 auto;
+      max-width: 370px;
+    }
+  }
+
+  .nav-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+
+    &__item {
+      list-style: none;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    &__link {
+      position: relative;
+      color: #000;
+      text-decoration: none;
+    }
+
+    &__link_active::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      border: 1px solid #7d8184;
+    }
   }
 }
