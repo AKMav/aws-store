@@ -1,0 +1,14 @@
+.app-layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .app-header,
+  .app-footer {
+    flex: 0 0 auto;
+  }
+
+  .app-main {
+    flex: 1 0 auto;
+  }
+}
