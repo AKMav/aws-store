@@ -1,14 +1,14 @@
 import React, { ChangeEvent, useState } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import CartLogo from "@/assets/icons/cart.svg";
+import WishlistLogo from "@/assets/icons/wishlist.svg";
 import "./style.scss";
 
 enum Langs {
   en = "English",
   ru = "Russian",
 }
-
-type LinkActiveCallback = (props: { isActive: boolean }) => string;
 
 export const Header = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -26,8 +26,8 @@ export const Header = () => {
     { path: "/login", title: "Sign up" },
   ];
 
-  const isActiveLink: LinkActiveCallback = ({ isActive }) =>
-    isActive ? "nav-list__link nav-list__link_active" : "nav-list__link";
+  const openCart = () => console.log("Open cart");
+  const openWishlist = () => console.log("Open wishlist");
 
   return (
     <header className="app-header">
@@ -69,13 +69,48 @@ export const Header = () => {
                 <ul className="nav-list">
                   {navLinks.map(({ path, title }) => (
                     <li key={path} className="nav-list__item">
-                      <NavLink to={path} className={isActiveLink}>
+                      <NavLink
+                        to={path}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "nav-list__link nav-list__link_active"
+                            : "nav-list__link"
+                        }
+                      >
                         {title}
                       </NavLink>
                     </li>
                   ))}
                 </ul>
               </nav>
+
+              <div className="header-body__actions-block">
+                <button
+                  type="button"
+                  className="action-button"
+                  onClick={openWishlist}
+                >
+                  <img
+                    src={WishlistLogo}
+                    alt="Wishlist button"
+                    draggable="false"
+                    className="action-button__image"
+                  />
+                </button>
+
+                <button
+                  type="button"
+                  className="action-button"
+                  onClick={openCart}
+                >
+                  <img
+                    src={CartLogo}
+                    alt="Buyer cart"
+                    draggable="false"
+                    className="action-button__image"
+                  />
+                </button>
+              </div>
             </Col>
           </Row>
         </Container>
