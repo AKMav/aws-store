@@ -1,0 +1,48 @@
+.not-found {
+  height: 100%;
+  padding: 24px 0;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    flex: 1 0 auto;
+  }
+
+  &__row {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title,
+  &__subtitle {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 110px;
+    font-weight: 400;
+  }
+
+  &__subtitle {
+    font-size: 16px;
+  }
+
+  &__button.btn {
+    max-width: 250px;
+    padding: 0;
+
+    .home-link {
+      display: inline-block;
+      padding: 16px 48px;
+      font-size: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}

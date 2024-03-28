@@ -1,11 +1,11 @@
 import { Layout } from "@/components";
 import { createBrowserRouter } from "react-router-dom";
+import { NotFound } from "./pages";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <div>Some error</div>,
     children: [
       {
         index: true,
@@ -22,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <div>Sign up</div>,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
