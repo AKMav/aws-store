@@ -1,0 +1,13 @@
+.main-header {
+  &__container.container {
+    padding: 0;
+  }
+
+  &__col {
+    padding: 40px 0;
+
+    &:first-of-type {
+      border-right: 1px solid var(--secondary-2);
+    }
+  }
+}
