@@ -9,5 +9,9 @@
     &:first-of-type {
       border-right: 1px solid var(--secondary-2);
     }
+
+    &_right.col {
+      padding-left: 45px;
+    }
   }
 }

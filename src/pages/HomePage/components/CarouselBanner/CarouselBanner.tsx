@@ -1,6 +1,19 @@
 import React from "react";
-import "./style.scss";
+import { Carousel } from "react-bootstrap";
+import { BannerItem } from "../BannerItem/BannerItem";
 
 export const CarouselBanner = () => {
-  return <div>CarouselBanner</div>;
+  return (
+    <Carousel controls={false}>
+      <Carousel.Item>
+        <BannerItem />
+      </Carousel.Item>
+      <Carousel.Item>
+        <BannerItem />
+      </Carousel.Item>
+      <Carousel.Item>
+        <BannerItem />
+      </Carousel.Item>
+    </Carousel>
+  );
 };

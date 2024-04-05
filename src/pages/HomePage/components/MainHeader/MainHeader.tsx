@@ -12,7 +12,7 @@ export const MainHeader = () => {
           <Col xs={4} className="main-header__col">
             <CategoriesList />
           </Col>
-          <Col className="main-header__col">
+          <Col className="main-header__col main-header__col_right">
             <CarouselBanner />
           </Col>
         </Row>

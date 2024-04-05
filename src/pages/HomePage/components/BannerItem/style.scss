@@ -1,0 +1,58 @@
+.banner-item {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+  background-color: var(--card);
+  max-height: 345px;
+  color: var(--primary-1);
+
+  &__info {
+    padding-left: 82px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__model-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    span {
+      font-size: 16px;
+    }
+  }
+
+  &__title {
+    font-size: 48px;
+    font-weight: 600;
+  }
+
+  &__link {
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 300px;
+    padding-top: 20px;
+  }
+}
+
+.carousel-indicators {
+  margin-bottom: 8px !important;
+  margin-right: 25% !important;
+  margin-left: 25% !important;
+  gap: 4px;
+
+  button {
+    margin: 0 !important;
+    border-top-width: 4px !important;
+    border-bottom-width: 4px !important;
+  }
+}
