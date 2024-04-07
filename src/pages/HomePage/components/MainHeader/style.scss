@@ -1,6 +1,10 @@
 .main-header {
   &__container.container {
     padding: 0;
+
+    .row {
+      flex-wrap: nowrap;
+    }
   }
 
   &__col {

@@ -1,6 +1,5 @@
 .banner-item {
   display: flex;
-  align-items: center;
   gap: 38px;
   background-color: var(--card);
   max-height: 345px;
@@ -10,12 +9,17 @@
     padding-left: 82px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    justify-content: space-evenly;
+
+    @media screen and (max-width: 1200px) {
+      padding-left: 42px;
+    }
   }
 
   &__model-title {
     display: flex;
     align-items: center;
+    margin: 0;
     gap: 16px;
 
     span {
@@ -26,6 +30,11 @@
   &__title {
     font-size: 48px;
     font-weight: 600;
+    margin: 0;
+
+    @media screen and (max-width: 1200px) {
+      font-size: 36px;
+    }
   }
 
   &__link {
@@ -41,6 +50,10 @@
     justify-content: center;
     max-height: 300px;
     padding-top: 20px;
+
+    @media screen and (max-width: 1200px) {
+      max-height: 250px;
+    }
   }
 }
 
