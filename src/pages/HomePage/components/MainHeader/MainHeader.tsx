@@ -9,7 +9,7 @@ export const MainHeader = () => {
     <div className="main-header">
       <Container className="main-header__container">
         <Row>
-          <Col xs={4} className="main-header__col">
+          <Col xs={2} className="main-header__col">
             <CategoriesList />
           </Col>
           <Col className="main-header__col main-header__col_right">
