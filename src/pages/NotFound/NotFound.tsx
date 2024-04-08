@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
 
-export const NotFound = () => {
+const NotFound = () => {
   return (
     <div className="not-found">
       <Container className="not-found__container">
@@ -28,3 +28,5 @@ export const NotFound = () => {
     </div>
   );
 };
+
+export default NotFound

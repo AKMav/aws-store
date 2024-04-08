@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { NotFound, HomePage } from "@/pages";
 import { App } from "./App";
+import { Suspense } from "react";
 
 export const router = createBrowserRouter([
   {
@@ -9,7 +10,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <Suspense><HomePage /></Suspense>,
       },
       {
         path: "/contacts",
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <NotFound />,
+        element: <Suspense><NotFound /></Suspense>,
       },
     ],
   },
