@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import "./style.scss";
-import { ICategory } from "@/types/categories";
+import { useSelector, useDispatch } from "react-redux";
+import { Button, Spinner } from "react-bootstrap";
 import { fetchCategories } from "@/services/products";
 import { normalizeCategories } from "@/utils/adapters";
-import { Button, Spinner } from "react-bootstrap";
+import { RootState } from "@/store";
+import { updateAllCategories } from "@/store/categories";
+import "./style.scss";
 
 export const CategoriesList = () => {
-  const [categories, setCategories] = useState<ICategory[]>([]);
+  const categories = useSelector((state: RootState) => state.categories.list);
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -14,7 +18,7 @@ export const CategoriesList = () => {
       try {
         setLoading(true);
         const { data } = await fetchCategories();
-        setCategories(normalizeCategories(data));
+        dispatch(updateAllCategories(normalizeCategories(data)));
       } catch (error) {
         console.error(error);
       } finally {
