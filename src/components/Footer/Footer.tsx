@@ -1,4 +1,3 @@
-import React from "react";
 import "./style.scss";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import GooglePlayImage from "@/assets/images/google-play.png";

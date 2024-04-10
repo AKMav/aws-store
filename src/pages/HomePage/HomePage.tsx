@@ -1,4 +1,3 @@
-import React from "react";
 import "./style.scss";
 import { Container } from "react-bootstrap";
 import { MainHeader } from "./components/MainHeader/MainHeader";

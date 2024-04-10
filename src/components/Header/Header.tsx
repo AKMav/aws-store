@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import CartLogo from "@/assets/icons/cart.svg";

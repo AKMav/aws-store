@@ -1,4 +1,3 @@
-import React from "react";
 import "./style.scss";
 import iphoneImage from "@/assets/images/iphone-banner.png";
 import appleIcon from "@/assets/icons/apple.svg";

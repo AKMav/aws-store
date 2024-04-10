@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.scss";
 import { ICategory } from "@/types/categories";
 import { fetchCategories } from "@/services/products";

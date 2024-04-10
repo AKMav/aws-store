@@ -1,4 +1,3 @@
-import React from "react";
 import "./style.scss";
 import { Container, Row, Col } from "react-bootstrap";
 import { CategoriesList } from "../CategoriesList/CategoriesList";

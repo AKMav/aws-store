@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
@@ -29,4 +28,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound
+export default NotFound;
