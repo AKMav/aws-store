@@ -11,3 +11,12 @@ export interface FetchedProduct {
   thumbnail: string;
   images: string[];
 }
+
+export interface IProductCard {
+  id: string | number;
+  name: string;
+  price: number;
+  rating: number;
+  mainPicture: string;
+  commentsCount?: number;
+}
