@@ -17,11 +17,18 @@ export const ProductsList = ({ classes, products }: IProps) => {
         </div>
         <h2 className="products-list__title">Explore Our Products</h2>
       </div>
-      <div className="products-list__grid">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+
+      {products?.length ? (
+        <div className="products-list__grid">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      ) : (
+        <div className="products-list__empty">
+          <h3>Products not found</h3>
+        </div>
+      )}
     </div>
   );
 };
