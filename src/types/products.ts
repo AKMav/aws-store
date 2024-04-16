@@ -1,4 +1,4 @@
-export interface FetchedProduct {
+export interface IFetchedProduct {
   id: number;
   title: string;
   description: string;
@@ -17,6 +17,8 @@ export interface IProductCard {
   name: string;
   price: number;
   rating: number;
+  discountPercentage?: number;
   mainPicture: string;
   commentsCount?: number;
+  isNew?: boolean;
 }
