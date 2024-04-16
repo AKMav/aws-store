@@ -1,4 +1,28 @@
 .products-list {
+  &__header {
+    margin-bottom: 60px;
+  }
+
+  .block-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+
+    &__rect {
+      height: 40px;
+      width: 20px;
+      border-radius: 4px;
+      background-color: var(--secondary-3);
+    }
+
+    &__title {
+      margin: 0;
+      font-size: 16px;
+      color: var(--secondary-3);
+    }
+  }
+
   &__grid {
     display: flex;
     justify-content: space-between;
