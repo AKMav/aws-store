@@ -1,14 +1,14 @@
 import "./style.scss";
 import { Container } from "react-bootstrap";
-import { ProductsList } from "@/components";
 import { MainHeader } from "./components/MainHeader/MainHeader";
+import { ProductsByCategory } from "./components/ProductsByCategory/ProductsByCategory";
 
 export const HomePage = () => {
   return (
     <div className="home-page">
       <Container>
         <MainHeader />
-        <ProductsList classes="own-products" />
+        <ProductsByCategory classes="own-products" />
       </Container>
     </div>
   );
