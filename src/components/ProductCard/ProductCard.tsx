@@ -34,7 +34,7 @@ export const ProductCard = ({ product }: IProps) => {
     console.log(product, " - add to cart");
   };
 
-  const { id, name, price, rating, commentsCount } = product;
+  const { id, name, price, rating, commentsCount, mainPicture } = product;
 
   return (
     <div className="product-card">
@@ -43,7 +43,14 @@ export const ProductCard = ({ product }: IProps) => {
         onMouseEnter={mouseEnter}
         onMouseLeave={mouseLeave}
       >
-        <img width={190} height={180} className="product-card__image" />
+        <img
+          width={190}
+          height={180}
+          src={mainPicture}
+          alt={`picture of ${name}`}
+          className="product-card__image"
+        />
+
         <div className="product-card__buttons">
           <RoundButton clickHandle={() => addToWishList(product)}>
             <img src={HeartIcon} width={24} height={24} />
