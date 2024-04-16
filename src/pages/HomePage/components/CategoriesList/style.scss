@@ -30,4 +30,8 @@
     font-size: 16px;
     color: var(--primary-2);
   }
+
+  &__link_active.btn {
+    color: var(--secondary-3);
+  }
 }
