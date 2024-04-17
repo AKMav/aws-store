@@ -10,30 +10,40 @@ interface IProps {
 }
 
 export const ProductsByCategory = ({ classes }: IProps) => {
+  const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<IProductCard[]>([]);
   const { currentCategory } = useCategoryFromParams();
 
-  const fetchProducts = async () => {
-    const response = await fetchProductsByCategory({
-      category: currentCategory,
-      queries: {
-        limit: "8",
-      },
-    });
-
-    const fetchedProducts = (response.data as { products: IFetchedProduct[] })
-      .products;
-
-    setProducts(formatFetchedProductForCard(fetchedProducts));
-  };
-
   useEffect(() => {
-    fetchProducts();
+    const getProducts = async (category?: string) => {
+      setLoading(true);
+
+      try {
+        const response = await fetchProductsByCategory({
+          category,
+          queries: {
+            limit: 8,
+          },
+        });
+
+        const fetchedProducts = (
+          response.data as { products: IFetchedProduct[] }
+        ).products;
+
+        setProducts(formatFetchedProductForCard(fetchedProducts));
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProducts(currentCategory);
   }, [currentCategory]);
 
   return (
     <>
-      <ProductsList classes={classes} products={products} />
+      <ProductsList classes={classes} products={products} loading={loading} />
     </>
   );
 };

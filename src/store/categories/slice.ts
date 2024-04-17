@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ICategoriesState } from "./types";
-import { updateAll } from "./actions";
+import { updateAll, setCategory } from "./actions";
 
 const initialState: ICategoriesState = {
   list: [],
+  currentCategory: "",
 };
 
 const categoriesSlice = createSlice({
@@ -11,9 +12,13 @@ const categoriesSlice = createSlice({
   initialState,
   reducers: {
     updateAll,
+    setCategory,
   },
 });
 
 export default categoriesSlice.reducer;
 
-export const { updateAll: updateAllCategories } = categoriesSlice.actions;
+export const {
+  updateAll: updateAllCategories,
+  setCategory: setCurrentCategory,
+} = categoriesSlice.actions;

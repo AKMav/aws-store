@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Spinner } from "react-bootstrap";
 import { fetchCategories } from "@/services/products";
-import { normalizeCategories } from "@/utils/adapters";
+import { normalizeCategories } from "@/decorators/categoriesFormatters";
 import { RootState } from "@/store";
-import { updateAllCategories } from "@/store/categories";
+import { updateAllCategories, setCurrentCategory } from "@/store/categories";
 import { useCategoryFromParams } from "@/hooks/useCategoryFromParams";
 import "./style.scss";
 
@@ -13,6 +13,7 @@ export const CategoriesList = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const categories = useSelector((state: RootState) => state.categories.list);
+
   useEffect(() => {
     const getCategories = async () => {
       try {
@@ -28,6 +29,11 @@ export const CategoriesList = () => {
 
     getCategories();
   }, []);
+
+  const selectCategory = (cat: string) => {
+    dispatch(setCurrentCategory(cat));
+    setCategoryToParams(cat);
+  };
 
   // set/get current category query params
   const { currentCategory, setCategoryToParams } = useCategoryFromParams();
@@ -47,7 +53,7 @@ export const CategoriesList = () => {
                     ? "categories-list__link categories-list__link_active"
                     : "categories-list__link"
                 }
-                onClick={() => setCategoryToParams(category)}
+                onClick={() => selectCategory(category)}
               >
                 {title}
               </Button>

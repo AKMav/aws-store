@@ -9,4 +9,11 @@ const updateAll = (
   state.list = action.payload;
 };
 
-export { updateAll };
+const setCategory = (
+  state: ICategoriesState,
+  action: PayloadAction<string>
+) => {
+  state.currentCategory = action.payload;
+};
+
+export { updateAll, setCategory };
