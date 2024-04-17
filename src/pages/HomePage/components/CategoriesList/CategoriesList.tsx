@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import { Button, Spinner } from "react-bootstrap";
 import { fetchCategories } from "@/services/products";
 import { normalizeCategories } from "@/decorators/categoriesFormatters";
 import { RootState } from "@/store";
 import { updateAllCategories, setCurrentCategory } from "@/store/categories";
-import { useCategoryFromParams } from "@/hooks/useCategoryFromParams";
 import "./style.scss";
 
+const CATEGORY = "category";
+
 export const CategoriesList = () => {
-  // fetch all categories
   const dispatch = useDispatch();
+
+  // all categories
   const [loading, setLoading] = useState(false);
   const categories = useSelector((state: RootState) => state.categories.list);
 
@@ -30,13 +33,21 @@ export const CategoriesList = () => {
     getCategories();
   }, []);
 
-  const selectCategory = (cat: string) => {
-    dispatch(setCurrentCategory(cat));
-    setCategoryToParams(cat);
+  // get/set current category from query
+  const currentCategory = useSelector(
+    (state: RootState) => state.categories.currentCategory
+  );
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const selectCategory = (category: string) => {
+    dispatch(setCurrentCategory(category));
+    setSearchParams({ category });
   };
 
-  // set/get current category query params
-  const { currentCategory, setCategoryToParams } = useCategoryFromParams();
+  useEffect(() => {
+    const paramsCategory = searchParams.get(CATEGORY);
+    dispatch(setCurrentCategory(paramsCategory || ""));
+  }, []);
 
   return (
     <div className="categories-list__wrapper">

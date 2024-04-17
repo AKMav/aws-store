@@ -1,20 +1,29 @@
 import { ProductsList } from "@/components";
-import { useCategoryFromParams } from "@/hooks/useCategoryFromParams";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import { IProductCard, IFetchedProduct } from "@/types/products";
 import { fetchProductsByCategory } from "@/services/products";
 import { formatFetchedProductForCard } from "@/decorators/productFormatters";
-import { useEffect, useState } from "react";
+import { RootState } from "@/store";
 
 interface IProps {
   classes?: string;
 }
 
+const CATEGORY = "category";
+
 export const ProductsByCategory = ({ classes }: IProps) => {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<IProductCard[]>([]);
-  const { currentCategory } = useCategoryFromParams();
+  const currentCategory = useSelector(
+    (state: RootState) => state.categories.currentCategory
+  );
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
+    const paramsCategory = searchParams.get(CATEGORY);
+
     const getProducts = async (category?: string) => {
       setLoading(true);
 
@@ -38,6 +47,7 @@ export const ProductsByCategory = ({ classes }: IProps) => {
       }
     };
 
+    if (paramsCategory !== currentCategory) return;
     getProducts(currentCategory);
   }, [currentCategory]);
 

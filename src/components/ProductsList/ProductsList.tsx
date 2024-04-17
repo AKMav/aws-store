@@ -27,15 +27,15 @@ export const ProductsList = ({ classes, products, loading }: IProps) => {
         )}
       </div>
 
-      {products?.length ? (
+      {!products?.length && !loading ? (
+        <div className="products-list__empty">
+          <h3>Products not found</h3>
+        </div>
+      ) : (
         <div className="products-list__grid">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>
-      ) : (
-        <div className="products-list__empty">
-          <h3>Products not found</h3>
         </div>
       )}
     </div>
