@@ -34,7 +34,8 @@ export const ProductCard = ({ product }: IProps) => {
     console.log(product, " - add to cart");
   };
 
-  const { id, name, price, rating, commentsCount, mainPicture } = product;
+  const { id, name, price, rating, commentsCount, mainPicture, isNew } =
+    product;
 
   return (
     <div className="product-card">
@@ -43,6 +44,7 @@ export const ProductCard = ({ product }: IProps) => {
         onMouseEnter={mouseEnter}
         onMouseLeave={mouseLeave}
       >
+        {isNew && <span className="product-card__new-tag">NEW</span>}
         <img
           width={190}
           height={180}

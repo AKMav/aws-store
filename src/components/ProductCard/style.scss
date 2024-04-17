@@ -15,6 +15,18 @@
     cursor: pointer;
   }
 
+  &__new-tag {
+    display: inline-block;
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    background-color: var(--button-1);
+    color: var(--primary-1);
+  }
+
   &__image {
     outline: none;
     border: none;
