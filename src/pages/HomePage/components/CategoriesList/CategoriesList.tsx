@@ -8,8 +8,6 @@ import { RootState } from "@/store";
 import { updateAllCategories, setCurrentCategory } from "@/store/categories";
 import "./style.scss";
 
-const CATEGORY = "category";
-
 export const CategoriesList = () => {
   const dispatch = useDispatch();
 
@@ -33,21 +31,16 @@ export const CategoriesList = () => {
     getCategories();
   }, []);
 
-  // get/set current category from query
+  // select category and save to query
   const currentCategory = useSelector(
     (state: RootState) => state.categories.currentCategory
   );
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const selectCategory = (category: string) => {
     dispatch(setCurrentCategory(category));
     setSearchParams({ category });
   };
-
-  useEffect(() => {
-    const paramsCategory = searchParams.get(CATEGORY);
-    dispatch(setCurrentCategory(paramsCategory || ""));
-  }, []);
 
   return (
     <div className="categories-list__wrapper">
