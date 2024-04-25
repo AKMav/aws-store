@@ -6,8 +6,9 @@ export const fetchProductsByCategory = async (options: IProductsGetOptions) => {
     ...(options.queries.limit
       ? { limit: options.queries.limit.toString() }
       : {}),
-    ...(options.queries.skip ? { limit: options.queries.skip.toString() } : {}),
+    ...(options.queries.skip ? { skip: options.queries.skip.toString() } : {}),
   };
+
   const params = new URLSearchParams(Object.entries(searchQuery));
   const url = options.category
     ? `/products/category/${options.category}?${params}`
