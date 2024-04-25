@@ -1,15 +1,23 @@
 import { ProductCard } from "@/components";
 import { IProductCard } from "@/types/products";
 import "./style.scss";
-import { Spinner } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 
 interface IProps {
   products: IProductCard[];
   classes?: string;
   loading?: boolean;
+  hasMoreItems?: boolean;
+  fetchMore?: () => void;
 }
 
-export const ProductsList = ({ classes, products, loading }: IProps) => {
+export const ProductsList = ({
+  classes,
+  products,
+  loading,
+  hasMoreItems,
+  fetchMore,
+}: IProps) => {
   return (
     <div className={classes ? `products-list ${classes}` : "products-list"}>
       <div className="products-list__header">
@@ -32,11 +40,27 @@ export const ProductsList = ({ classes, products, loading }: IProps) => {
           <h3>Products not found</h3>
         </div>
       ) : (
-        <div className="products-list__grid">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        <>
+          <div className="products-list__grid">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+          <div className="products-list__footer">
+            {hasMoreItems && !!products?.length && (
+              <div className="products-list__footer-row">
+                <Button
+                  className="fetch-more-btn"
+                  variant="outline-secondary"
+                  disabled={loading}
+                  onClick={fetchMore}
+                >
+                  {loading ? "Loading…" : "Fetch more"}
+                </Button>
+              </div>
+            )}
+          </div>
+        </>
       )}
     </div>
   );

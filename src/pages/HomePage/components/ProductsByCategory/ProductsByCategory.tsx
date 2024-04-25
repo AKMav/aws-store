@@ -1,17 +1,26 @@
 import { ProductsList } from "@/components";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import { IProductCard, IFetchedProduct } from "@/types/products";
+import { IProductCard } from "@/types/products";
 import { fetchProductsByCategory } from "@/services/products";
 import { formatFetchedProductForCard } from "@/decorators/productFormatters";
 import { RootState } from "@/store";
+import { AxiosDataResponse, PaginateParams } from "../../types";
 
 interface IProps {
   classes?: string;
 }
 
-const CATEGORY = "category";
+interface IFetchProductsProps {
+  category: string;
+  pagination: PaginateParams;
+}
+
+const initialPaginationParams = {
+  limit: 12,
+  skip: 0,
+  total: 0,
+};
 
 export const ProductsByCategory = ({ classes }: IProps) => {
   const [loading, setLoading] = useState(false);
@@ -19,41 +28,80 @@ export const ProductsByCategory = ({ classes }: IProps) => {
   const currentCategory = useSelector(
     (state: RootState) => state.categories.currentCategory
   );
-  const [searchParams] = useSearchParams();
+
+  const [skipCount, setSkipCount] = useState(0);
+  const [paginationParams, setPaginationParams] = useState<PaginateParams>(
+    initialPaginationParams
+  );
+
+  const hasMoreItems = useMemo(
+    () => products.length < paginationParams.total,
+    [paginationParams, skipCount]
+  );
+
+  const getProducts = async ({ category, pagination }: IFetchProductsProps) => {
+    setLoading(true);
+
+    try {
+      const response = (await fetchProductsByCategory({
+        category,
+        queries: {
+          limit: pagination.limit,
+          skip: pagination.skip,
+        },
+      })) as AxiosDataResponse;
+
+      const { products, ...respPagination } = response.data;
+      const nextSkipCount = skipCount + 1;
+      setSkipCount(nextSkipCount);
+
+      const paginationData = {
+        ...paginationParams,
+        skip: nextSkipCount * paginationParams.limit,
+        total: respPagination.total,
+      };
+
+      setPaginationParams(paginationData);
+
+      return formatFetchedProductForCard(products || []);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+    return [];
+  };
+
+  const fetchMoreProducts = async () => {
+    const products = await getProducts({
+      category: currentCategory,
+      pagination: paginationParams,
+    });
+
+    setProducts((prevProducts) => [...prevProducts, ...products]);
+  };
 
   useEffect(() => {
-    const paramsCategory = searchParams.get(CATEGORY);
-
-    const getProducts = async (category?: string) => {
-      setLoading(true);
-
-      try {
-        const response = await fetchProductsByCategory({
-          category,
-          queries: {
-            limit: 8,
-          },
-        });
-
-        const fetchedProducts = (
-          response.data as { products: IFetchedProduct[] }
-        ).products;
-
-        setProducts(formatFetchedProductForCard(fetchedProducts));
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
+    const getProductsByCategory = async () => {
+      const products = await getProducts({
+        category: currentCategory,
+        pagination: initialPaginationParams,
+      });
+      setProducts(products);
     };
 
-    if (paramsCategory !== currentCategory) return;
-    getProducts(currentCategory);
+    getProductsByCategory();
   }, [currentCategory]);
 
   return (
     <>
-      <ProductsList classes={classes} products={products} loading={loading} />
+      <ProductsList
+        classes={classes}
+        products={products}
+        loading={loading}
+        hasMoreItems={hasMoreItems}
+        fetchMore={fetchMoreProducts}
+      />
     </>
   );
 };

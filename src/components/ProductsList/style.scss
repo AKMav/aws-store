@@ -50,4 +50,19 @@
     column-gap: 30px;
     row-gap: 60px;
   }
+
+  &__footer {
+    margin-top: 24px;
+
+    .fetch-more-btn {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+  &__footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
