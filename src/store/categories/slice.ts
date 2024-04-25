@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ICategoriesState } from "./types";
 import { updateAll, setCategory } from "./actions";
+import { CATEGORY } from "@/types/categories";
 
 const params = new URLSearchParams(document.location.search);
-const CATEGORY = "category";
 
 const initialState: ICategoriesState = {
   list: [],

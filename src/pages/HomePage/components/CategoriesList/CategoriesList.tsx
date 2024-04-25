@@ -6,6 +6,7 @@ import { fetchCategories } from "@/services/products";
 import { normalizeCategories } from "@/decorators/categoriesFormatters";
 import { RootState } from "@/store";
 import { updateAllCategories, setCurrentCategory } from "@/store/categories";
+import { CATEGORY } from "@/types/categories";
 import "./style.scss";
 
 export const CategoriesList = () => {
@@ -35,12 +36,20 @@ export const CategoriesList = () => {
   const currentCategory = useSelector(
     (state: RootState) => state.categories.currentCategory
   );
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const selectCategory = (category: string) => {
     dispatch(setCurrentCategory(category));
     setSearchParams({ category });
   };
+
+  useEffect(() => {
+    const paramsCategory = searchParams.get(CATEGORY);
+
+    if (!paramsCategory && currentCategory) {
+      setSearchParams({ category: currentCategory });
+    }
+  }, []);
 
   return (
     <div className="categories-list__wrapper">
