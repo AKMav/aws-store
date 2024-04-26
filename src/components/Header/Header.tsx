@@ -1,6 +1,8 @@
-import { ChangeEvent, useState } from "react";
-import { Form, Container, Row, Col } from "react-bootstrap";
+import { ChangeEvent, useMemo, useState } from "react";
+import { Form, Container, Row, Col, Badge } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { NavList } from "../NavList/NavList";
+import { RootState } from "@/store";
 import CartLogo from "@/assets/icons/cart.svg";
 import WishlistLogo from "@/assets/icons/wishlist.svg";
 import "./style.scss";
@@ -21,6 +23,9 @@ export const Header = () => {
 
   const openCart = () => console.log("Open cart");
   const openWishlist = () => console.log("Open wishlist");
+
+  const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
+  const cartListCount = useMemo(() => buyerCartList.length, [buyerCartList]);
 
   return (
     <header className="app-header">
@@ -57,11 +62,9 @@ export const Header = () => {
           <Row>
             <Col className="header-body__col">
               <h1 className="header-body__title">Awesome store</h1>
-
               <nav className="header-body__nav">
                 <NavList />
               </nav>
-
               <div className="header-body__actions-block">
                 <button
                   type="button"
@@ -87,6 +90,11 @@ export const Header = () => {
                     draggable="false"
                     className="action-button__image"
                   />
+                  {!!cartListCount && (
+                    <Badge pill bg="danger" className="action-button__label">
+                      {cartListCount}
+                    </Badge>
+                  )}
                 </button>
               </div>
             </Col>
