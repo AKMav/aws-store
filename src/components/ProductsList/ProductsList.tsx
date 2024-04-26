@@ -1,7 +1,11 @@
+import { Button, Spinner } from "react-bootstrap";
 import { ProductCard } from "@/components";
 import { IProductCard } from "@/types/products";
+import { useDispatch, useSelector } from "react-redux";
+import { addProductToCart, removeProductFromCart } from "@/store/buyerCart";
 import "./style.scss";
-import { Button, Spinner } from "react-bootstrap";
+import { RootState } from "@/store";
+import { useMemo } from "react";
 
 interface IProps {
   products: IProductCard[];
@@ -18,6 +22,22 @@ export const ProductsList = ({
   hasMoreItems,
   fetchMore,
 }: IProps) => {
+  const dispatch = useDispatch();
+
+  const onProductAddToCart = (product: IProductCard) => {
+    dispatch(addProductToCart(product));
+  };
+
+  const onProductRemoveFromCart = (id: IProductCard["id"]) => {
+    dispatch(removeProductFromCart(id));
+  };
+
+  const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
+  const buyerCartListIds = useMemo(
+    () => buyerCartList.map(({ id }) => id),
+    [buyerCartList]
+  );
+
   return (
     <div className={classes ? `products-list ${classes}` : "products-list"}>
       <div className="products-list__header">
@@ -43,7 +63,13 @@ export const ProductsList = ({
         <>
           <div className="products-list__grid">
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={onProductAddToCart}
+                onRemoveFromCart={onProductRemoveFromCart}
+                buyerCartListIds={buyerCartListIds}
+              />
             ))}
           </div>
           <div className="products-list__footer">

@@ -1,5 +1,5 @@
 import "./style.scss";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Fade } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
 import { RoundButton } from "@/components/UIKit";
@@ -9,9 +9,17 @@ import { IProductCard } from "@/types/products";
 
 interface IProps {
   product: IProductCard;
+  buyerCartListIds: Array<IProductCard["id"]>;
+  onAddToCart: (item: IProductCard) => void;
+  onRemoveFromCart: (id: IProductCard["id"]) => void;
 }
 
-export const ProductCard = ({ product }: IProps) => {
+export const ProductCard = ({
+  product,
+  buyerCartListIds,
+  onAddToCart,
+  onRemoveFromCart,
+}: IProps) => {
   const [addBtnVisibility, setAddBtnVisibility] = useState(false);
 
   const mouseEnter = () => {
@@ -26,12 +34,13 @@ export const ProductCard = ({ product }: IProps) => {
     console.log(product, " - add to wishlist");
   };
 
+  const wasAddedToCart = useCallback(
+    (id: IProductCard["id"]) => buyerCartListIds.includes(id),
+    [buyerCartListIds]
+  );
+
   const openProduct = (id: IProductCard["id"]) => {
     console.log(id, " - open");
-  };
-
-  const addToCart = (product: IProductCard) => {
-    console.log(product, " - add to cart");
   };
 
   const { id, name, price, rating, commentsCount, mainPicture, isNew } =
@@ -63,12 +72,21 @@ export const ProductCard = ({ product }: IProps) => {
         </div>
 
         <Fade in={addBtnVisibility} timeout={500}>
-          <button
-            className="product-card__add-btn"
-            onClick={() => addToCart(product)}
-          >
-            Add To Cart
-          </button>
+          {wasAddedToCart(id) ? (
+            <button
+              className="product-card__cart-button product-card__cart-button_remove"
+              onClick={() => onRemoveFromCart(id)}
+            >
+              Remove From Cart
+            </button>
+          ) : (
+            <button
+              className="product-card__cart-button"
+              onClick={() => onAddToCart(product)}
+            >
+              Add To Cart
+            </button>
+          )}
         </Fade>
       </div>
 

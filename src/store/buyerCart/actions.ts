@@ -18,9 +18,9 @@ const addProduct = (
 
 const removeProduct = (
   state: ICategoriesState,
-  action: PayloadAction<IProductCard>
+  action: PayloadAction<IProductCard["id"]>
 ) => {
-  state.list = [...state.list].filter(({ id }) => action.payload.id !== id);
+  state.list = [...state.list].filter(({ id }) => action.payload !== id);
 };
 
 export { updateAll, addProduct, removeProduct };
