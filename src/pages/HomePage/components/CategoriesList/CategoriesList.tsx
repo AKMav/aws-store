@@ -21,7 +21,12 @@ export const CategoriesList = () => {
       try {
         setLoading(true);
         const { data } = await fetchCategories();
-        dispatch(updateAllCategories(normalizeCategories(data)));
+        dispatch(
+          updateAllCategories([
+            { category: "", title: "All categories" },
+            ...normalizeCategories(data),
+          ])
+        );
       } catch (error) {
         console.error(error);
       } finally {
@@ -40,7 +45,12 @@ export const CategoriesList = () => {
 
   const selectCategory = (category: string) => {
     dispatch(setCurrentCategory(category));
-    setSearchParams({ category });
+    if (category) {
+      setSearchParams({ category });
+    } else {
+      searchParams.delete(CATEGORY);
+      setSearchParams(searchParams);
+    }
   };
 
   useEffect(() => {

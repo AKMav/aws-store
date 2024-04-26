@@ -17,6 +17,14 @@
     padding: 0;
     margin-bottom: 4px;
 
+    &:first-of-type .btn {
+      font-weight: 700;
+
+      &:not(.categories-list__link_active) {
+        color: var(--text-2);
+      }
+    }
+
     &:last-of-type {
       margin-bottom: 0;
     }
