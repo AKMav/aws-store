@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavList } from "../NavList/NavList";
 import CartLogo from "@/assets/icons/cart.svg";
 import WishlistLogo from "@/assets/icons/wishlist.svg";
 import "./style.scss";
@@ -18,13 +18,6 @@ export const Header = () => {
     const value = event.target.value as Langs;
     setLang(value);
   };
-
-  const navLinks = [
-    { path: "/", title: "Home" },
-    { path: "/contacts", title: "Contacts" },
-    { path: "/about", title: "About" },
-    { path: "/login", title: "Sign up" },
-  ];
 
   const openCart = () => console.log("Open cart");
   const openWishlist = () => console.log("Open wishlist");
@@ -66,22 +59,7 @@ export const Header = () => {
               <h1 className="header-body__title">Awesome store</h1>
 
               <nav className="header-body__nav">
-                <ul className="nav-list">
-                  {navLinks.map(({ path, title }) => (
-                    <li key={path} className="nav-list__item">
-                      <NavLink
-                        to={path}
-                        className={({ isActive }) =>
-                          isActive
-                            ? "nav-list__link nav-list__link_active"
-                            : "nav-list__link"
-                        }
-                      >
-                        {title}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
+                <NavList />
               </nav>
 
               <div className="header-body__actions-block">
