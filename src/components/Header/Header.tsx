@@ -1,5 +1,6 @@
 import { ChangeEvent, useMemo, useState } from "react";
 import { Form, Container, Row, Col, Badge } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { NavList } from "@/components";
 import { RootState } from "@/store";
@@ -12,16 +13,25 @@ enum Langs {
   ru = "Russian",
 }
 
+enum Paths {
+  cart = "cart",
+  wishlist = "wishlist",
+}
+
 export const Header = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [lang, setLang] = useState(Langs.en);
+  const navigate = useNavigate();
 
   const changeLang = (event: ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value as Langs;
     setLang(value);
   };
 
-  const openCart = () => console.log("Open cart");
+  const openCart = () => {
+    navigate(Paths.cart);
+  };
+
   const openWishlist = () => console.log("Open wishlist");
 
   const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
