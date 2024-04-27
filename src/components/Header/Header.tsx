@@ -32,7 +32,9 @@ export const Header = () => {
     navigate(Paths.cart);
   };
 
-  const openWishlist = () => console.log("Open wishlist");
+  const openWishlist = () => {
+    navigate(Paths.wishlist);
+  };
 
   const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
   const cartListCount = useMemo(() => buyerCartList.length, [buyerCartList]);
