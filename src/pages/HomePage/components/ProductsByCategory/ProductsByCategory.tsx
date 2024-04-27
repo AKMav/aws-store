@@ -7,10 +7,6 @@ import { formatFetchedProductForCard } from "@/decorators/productFormatters";
 import { RootState } from "@/store";
 import { AxiosDataResponse, PaginateParams } from "../../types";
 
-interface IProps {
-  classes?: string;
-}
-
 interface IFetchProductsProps {
   category: string;
   pagination: PaginateParams;
@@ -22,7 +18,7 @@ const initialPaginationParams = {
   total: 0,
 };
 
-export const ProductsByCategory = ({ classes }: IProps) => {
+export const ProductsByCategory = () => {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<IProductCard[]>([]);
   const currentCategory = useSelector(
@@ -96,7 +92,6 @@ export const ProductsByCategory = ({ classes }: IProps) => {
   return (
     <>
       <ProductsList
-        classes={classes}
         products={products}
         loading={loading}
         hasMoreItems={hasMoreItems}

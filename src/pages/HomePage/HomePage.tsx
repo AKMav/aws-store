@@ -1,5 +1,6 @@
 import "./style.scss";
 import { Container } from "react-bootstrap";
+import { BenefitsList } from "@/components";
 import { MainHeader } from "./components/MainHeader/MainHeader";
 import { ProductsByCategory } from "./components/ProductsByCategory/ProductsByCategory";
 
@@ -8,7 +9,8 @@ export const HomePage = () => {
     <div className="home-page">
       <Container>
         <MainHeader />
-        <ProductsByCategory classes="own-products" />
+        <ProductsByCategory />
+        <BenefitsList />
       </Container>
     </div>
   );

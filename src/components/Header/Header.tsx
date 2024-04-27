@@ -1,7 +1,7 @@
 import { ChangeEvent, useMemo, useState } from "react";
 import { Form, Container, Row, Col, Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { NavList } from "../NavList/NavList";
+import { NavList } from "@/components";
 import { RootState } from "@/store";
 import CartLogo from "@/assets/icons/cart.svg";
 import WishlistLogo from "@/assets/icons/wishlist.svg";
