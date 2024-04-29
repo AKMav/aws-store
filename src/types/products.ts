@@ -16,11 +16,11 @@ interface IProductBase {
   id: string | number;
   name: string;
   price: number;
+  mainPicture: string;
 }
 
 export interface IProductCard extends IProductBase {
   rating: number;
-  mainPicture: string;
   discountPercentage?: number;
   commentsCount?: number;
   isNew?: boolean;

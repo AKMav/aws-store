@@ -1,6 +1,6 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import { BackHomeButton } from "@/components/UIKit";
 import "./style.scss";
-import { NavLink } from "react-router-dom";
 
 const NotFound = () => {
   return (
@@ -16,11 +16,7 @@ const NotFound = () => {
         </Row>
         <Row className="not-found__row">
           <Col>
-            <Button variant="danger" className="not-found__button">
-              <NavLink to="/" className="home-link">
-                Back to home page
-              </NavLink>
-            </Button>
+            <BackHomeButton />
           </Col>
         </Row>
       </Container>
