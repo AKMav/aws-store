@@ -6,3 +6,4 @@ export {
   removeProductFromCart,
 } from "./slice";
 export default reducer;
+export * from "./types";

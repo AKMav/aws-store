@@ -12,13 +12,20 @@ export interface IFetchedProduct {
   images: string[];
 }
 
-export interface IProductCard {
+interface IProductBase {
   id: string | number;
   name: string;
   price: number;
+}
+
+export interface IProductCard extends IProductBase {
   rating: number;
-  discountPercentage?: number;
   mainPicture: string;
+  discountPercentage?: number;
   commentsCount?: number;
   isNew?: boolean;
+}
+
+export interface ICartProduct extends IProductBase {
+  quantity: number;
 }

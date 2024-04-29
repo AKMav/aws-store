@@ -1,5 +1,7 @@
-import { IProductCard } from "@/types/products";
+import { ICartProduct } from "@/types/products";
 
 export interface ICategoriesState {
-  list: IProductCard[];
+  list: ICartProduct[];
 }
+
+export const BUYER_CART_KEY = "aws_store_buyer_cart" as const;

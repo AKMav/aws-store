@@ -1,9 +1,11 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "@/components";
-import { Footer } from "@/components";
+import { Header, Footer } from "@/templates";
+import { useSaveBuyerCart as saveBuyerCartToStorageOnChange } from "@/hooks";
 import "./style.scss";
 
-export const Layout = () => {
+export const MainLayout = () => {
+  saveBuyerCartToStorageOnChange();
+
   return (
     <>
       <div className="app-layout-wrapper">

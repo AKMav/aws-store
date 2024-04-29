@@ -1,10 +1,10 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { IProductCard } from "@/types/products";
+import { IProductCard, ICartProduct } from "@/types/products";
 import { ICategoriesState } from "./types";
 
 const updateAll = (
   state: ICategoriesState,
-  action: PayloadAction<IProductCard[]>
+  action: PayloadAction<ICartProduct[]>
 ) => {
   state.list = action.payload;
 };
@@ -13,7 +13,9 @@ const addProduct = (
   state: ICategoriesState,
   action: PayloadAction<IProductCard>
 ) => {
-  state.list = [...state.list, action.payload];
+  const { id, price, name } = action.payload;
+  const product: ICartProduct = { id, name, price, quantity: 1 };
+  state.list = [...state.list, product];
 };
 
 const removeProduct = (
