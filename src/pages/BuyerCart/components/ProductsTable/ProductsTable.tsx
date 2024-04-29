@@ -1,8 +1,12 @@
+import { ChangeEvent } from "react";
 import { ICartProduct } from "@/types/products";
 import CrossIcon from "@/assets/icons/cross.svg";
 import { ProductNameCell } from "../ProductNameCell/ProductNameCell";
 import { useDispatch } from "react-redux";
-import { removeProductFromCart } from "@/store/buyerCart";
+import {
+  removeProductFromCart,
+  cartProductQuantityChange,
+} from "@/store/buyerCart";
 import "./style.scss";
 
 interface IProps {
@@ -14,6 +18,16 @@ export const ProductsTable = ({ products }: IProps) => {
 
   const removeProduct = (id: string | number) => {
     dispatch(removeProductFromCart(id));
+  };
+
+  const changeQuantity = (
+    event: ChangeEvent<HTMLInputElement>,
+    id: string | number
+  ) => {
+    const quantity = Number((event.target as HTMLInputElement).value);
+
+    if (quantity <= 0) return;
+    dispatch(cartProductQuantityChange({ id, quantity }));
   };
 
   return (
@@ -48,7 +62,16 @@ export const ProductsTable = ({ products }: IProps) => {
               <span className="cell-text">${price}</span>
             </td>
             <td className="cart-products-table__cell cart-products-table__cell_body">
-              <span className="cell-text">{quantity}</span>
+              <span className="cell-text">
+                <input
+                  type="number"
+                  value={quantity}
+                  className="number-input"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    changeQuantity(e, id)
+                  }
+                />
+              </span>
             </td>
             <td className="cart-products-table__cell cart-products-table__cell_body">
               <div className="flex-cell">
