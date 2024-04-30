@@ -7,10 +7,10 @@ interface IProps {
 }
 
 export const CartTotal = ({ productsTotalPrice }: IProps) => {
-  const [deliveryPrice, setDeliveryPrice] = useState(0); // get random from $10 to $100
+  const [deliveryPrice, setDeliveryPrice] = useState(0); // get random from $1 to $100
 
   useEffect(() => {
-    const random = Math.ceil(Math.random() * 100);
+    const random = Math.round(Math.random() * 100);
     setDeliveryPrice(random);
   }, []);
 

@@ -10,8 +10,13 @@ const BuyerCart = () => {
   const navigate = useNavigate();
 
   const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
+
   const productsTotalPrice = useMemo(
-    () => buyerCartList.reduce((acc, { price }) => acc + price, 0),
+    () =>
+      buyerCartList.reduce(
+        (acc, { price, quantity }) => acc + price * quantity,
+        0
+      ),
     [buyerCartList]
   );
 
