@@ -1,10 +1,11 @@
+import { useMemo } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { ProductsTable, EmptyCart, CartTotal } from "./components";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "@/store";
+import { Routes } from "@/routes";
 import "./style.scss";
-import { useMemo } from "react";
 
 const BuyerCart = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const BuyerCart = () => {
             <Button
               variant="outline-dark"
               className="buyer-cart-page__button"
-              onClick={() => navigate("/")}
+              onClick={() => navigate(Routes.Home)}
             >
               Return To Shop
             </Button>

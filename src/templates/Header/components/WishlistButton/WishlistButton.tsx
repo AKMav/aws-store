@@ -1,15 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { RoundButton } from "@/components/UIKit";
 import WishlistLogo from "@/assets/icons/wishlist.svg";
+import { Routes } from "@/routes";
 import "./style.scss";
-
-const WISHLIST_PATH = "wishlist";
 
 export const WishlistButton = () => {
   const navigate = useNavigate();
 
   const openWishlist = () => {
-    navigate(WISHLIST_PATH);
+    navigate(Routes.Wishlist);
   };
 
   return (

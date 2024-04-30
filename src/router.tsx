@@ -1,11 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
-import { NotFound, HomePage, BuyerCart } from "@/pages";
-import { App } from "./App";
 import { Suspense } from "react";
+import { createBrowserRouter } from "react-router-dom";
+import { NotFound, HomePage, BuyerCart, Wishlist } from "@/pages";
+import { Routes } from "./routes";
+import { App } from "./App";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: Routes.Home,
     element: <App />,
     children: [
       {
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "cart",
+        path: Routes.Cart,
         element: (
           <Suspense>
             <BuyerCart />
@@ -25,7 +26,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "*",
+        path: Routes.Wishlist,
+        element: (
+          <Suspense>
+            <Wishlist />
+          </Suspense>
+        ),
+      },
+      {
+        path: Routes.NotFound,
         element: (
           <Suspense>
             <NotFound />

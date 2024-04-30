@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
+import { Routes } from "@/routes";
 import "./style.scss";
 
 export const NavList = () => {
   const navLinks = [
-    { path: "/", title: "Home" },
-    { path: "/contacts", title: "Contacts" },
-    { path: "/about", title: "About" },
-    { path: "/login", title: "Sign up" },
+    { path: Routes.Home, title: "Home" },
+    { path: Routes.Contacts, title: "Contacts" },
+    { path: Routes.About, title: "About" },
+    { path: Routes.Login, title: "Sign up" },
   ];
 
   return (

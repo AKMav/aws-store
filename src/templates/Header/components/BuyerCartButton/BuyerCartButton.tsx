@@ -4,16 +4,15 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "@/store";
 import { RoundButton } from "@/components/UIKit";
+import { Routes } from "@/routes";
 import CartLogo from "@/assets/icons/cart.svg";
 import "./style.scss";
-
-const CART_PATH = "cart";
 
 export const BuyerCartButton = () => {
   const navigate = useNavigate();
 
   const openCart = () => {
-    navigate(CART_PATH);
+    navigate(Routes.Cart);
   };
 
   const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
