@@ -81,7 +81,12 @@ export const ProductsTable = ({ products }: IProps) => {
                   className="cart-products-table__remove-button"
                   onClick={() => removeProduct(id)}
                 >
-                  <img src={CrossIcon} alt="remove button icon" />
+                  <img
+                    src={CrossIcon}
+                    alt="remove button icon"
+                    width={8}
+                    height={8}
+                  />
                 </button>
               </div>
             </td>
