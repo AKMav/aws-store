@@ -21,6 +21,7 @@ export const NavList = () => {
                 ? "nav-list__link nav-list__link_active"
                 : "nav-list__link"
             }
+            draggable="false"
           >
             {title}
           </NavLink>
