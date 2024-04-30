@@ -13,7 +13,7 @@ export const BannerItem = () => {
       <div className="banner-item__info">
         <div className="banner-item__info-row">
           <p className="banner-item__model-title">
-            <img src={appleIcon} />
+            <img src={appleIcon} draggable="false" />
             <span>iPhone 14 Series</span>
           </p>
         </div>
@@ -26,7 +26,7 @@ export const BannerItem = () => {
           onClick={itemClickHandler}
         >
           Shop Now
-          <img src={arrow} alt="arrow-right-icon" />
+          <img src={arrow} alt="arrow-right-icon" draggable="false" />
         </a>
       </div>
       <img
@@ -34,6 +34,7 @@ export const BannerItem = () => {
         src={iphoneImage}
         alt="iphone"
         className="banner-item__image"
+        draggable="false"
       />
     </div>
   );

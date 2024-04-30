@@ -7,6 +7,7 @@ export const EmptyCart = () => {
     <div className="empty-cart">
       <img
         src={EmptyCartImage}
+        draggable="false"
         alt="empty card image"
         className="empty-cart__image"
       />

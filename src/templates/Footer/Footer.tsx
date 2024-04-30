@@ -63,25 +63,41 @@ export const Footer = () => {
                     type="button"
                     onClick={() => console.log("google play link click")}
                   >
-                    <img src={GooglePlayImage} alt="google play link" />
+                    <img
+                      src={GooglePlayImage}
+                      alt="google play link"
+                      draggable="false"
+                    />
                   </button>
                   <button
                     className="store-button"
                     type="button"
                     onClick={() => console.log("app store link click")}
                   >
-                    <img src={AppStoreImage} alt="app store link" />
+                    <img
+                      src={AppStoreImage}
+                      alt="app store link"
+                      draggable="false"
+                    />
                   </button>
                 </div>
                 <div className="socials-links">
                   <button type="button" className="socials-links__btn">
-                    <img src={FacebookIcon} alt="social link" />
+                    <img
+                      src={FacebookIcon}
+                      alt="social link"
+                      draggable="false"
+                    />
                   </button>
                   <button type="button" className="socials-links__btn">
-                    <img src={InstIcon} alt="social link" />
+                    <img src={InstIcon} alt="social link" draggable="false" />
                   </button>
                   <button type="button" className="socials-links__btn">
-                    <img src={LinkedinIcon} alt="social link" />
+                    <img
+                      src={LinkedinIcon}
+                      alt="social link"
+                      draggable="false"
+                    />
                   </button>
                 </div>
               </div>

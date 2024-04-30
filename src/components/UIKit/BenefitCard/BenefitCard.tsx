@@ -10,7 +10,13 @@ export const BenefitCard = ({ title, subtitle, iconSrc }: IProps) => {
   return (
     <div className="benefit-card">
       <div className="benefit-card__circle">
-        <img src={iconSrc} alt={title} width={40} height={40} />
+        <img
+          src={iconSrc}
+          alt={title}
+          width={40}
+          height={40}
+          draggable="false"
+        />
       </div>
       <div>
         <h3 className="benefit-card__title">{title}</h3>

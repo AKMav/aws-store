@@ -73,6 +73,7 @@ export const ProductCard = ({
         <img
           width={190}
           height={180}
+          draggable="false"
           src={mainPicture}
           alt={`picture of ${name}`}
           className="product-card__image"
@@ -80,10 +81,10 @@ export const ProductCard = ({
 
         <div className="product-card__buttons">
           <RoundButton clickHandle={() => addToWishList(product)}>
-            <img src={HeartIcon} width={24} height={24} />
+            <img src={HeartIcon} width={24} height={24} draggable="false" />
           </RoundButton>
           <RoundButton clickHandle={() => openProduct(id)}>
-            <img src={EyeIcon} width={24} height={24} />
+            <img src={EyeIcon} width={24} height={24} draggable="false" />
           </RoundButton>
         </div>
 
