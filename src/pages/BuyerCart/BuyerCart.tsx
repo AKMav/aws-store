@@ -15,7 +15,8 @@ const BuyerCart = () => {
   const productsTotalPrice = useMemo(
     () =>
       buyerCartList.reduce(
-        (acc, { price, quantity }) => acc + price * quantity,
+        (acc, { price, quantity, priceWithDiscount }) =>
+          acc + (priceWithDiscount || price) * quantity,
         0
       ),
     [buyerCartList]

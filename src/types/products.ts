@@ -17,11 +17,12 @@ interface IProductBase {
   name: string;
   price: number;
   mainPicture: string;
+  priceWithDiscount?: number | null;
 }
 
 export interface IProductCard extends IProductBase {
   rating: number;
-  discountPercentage?: number;
+  discountPercentage?: number | null;
   commentsCount?: number;
   isNew?: boolean;
 }

@@ -13,8 +13,15 @@ const addProduct = (
   state: ICategoriesState,
   action: PayloadAction<IProductCard>
 ) => {
-  const { id, price, name, mainPicture } = action.payload;
-  const product: ICartProduct = { id, name, price, mainPicture, quantity: 1 };
+  const { id, price, name, mainPicture, priceWithDiscount } = action.payload;
+  const product: ICartProduct = {
+    id,
+    name,
+    price,
+    priceWithDiscount,
+    mainPicture,
+    quantity: 1,
+  };
   state.list = [...state.list, product];
 };
 

@@ -1,4 +1,3 @@
-import "./style.scss";
 import { useCallback, useState } from "react";
 import { Fade } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
@@ -6,6 +5,7 @@ import { RoundButton } from "@/components/UIKit";
 import EyeIcon from "@/assets/icons/eye.svg";
 import HeartIcon from "@/assets/icons/heart.svg";
 import { IProductCard } from "@/types/products";
+import "./style.scss";
 
 interface IProps {
   product: IProductCard;
@@ -43,8 +43,17 @@ export const ProductCard = ({
     console.log(id, " - open");
   };
 
-  const { id, name, price, rating, commentsCount, mainPicture, isNew } =
-    product;
+  const {
+    id,
+    name,
+    price,
+    rating,
+    commentsCount,
+    mainPicture,
+    isNew,
+    discountPercentage,
+    priceWithDiscount,
+  } = product;
 
   return (
     <div className="product-card">
@@ -53,7 +62,14 @@ export const ProductCard = ({
         onMouseEnter={mouseEnter}
         onMouseLeave={mouseLeave}
       >
-        {isNew && <span className="product-card__new-tag">NEW</span>}
+        {isNew && (
+          <span className="product-card__tag product-card__tag_new">NEW</span>
+        )}
+        {discountPercentage && (
+          <span className="product-card__tag product-card__tag_discount">
+            -{Math.round(discountPercentage)}%
+          </span>
+        )}
         <img
           width={190}
           height={180}
@@ -93,7 +109,14 @@ export const ProductCard = ({
       <div className="product-card__footer">
         <p className="product-card__name">{name}</p>
         <div className="product-card__info">
-          <span className="product-card__price">${price}</span>
+          {priceWithDiscount ? (
+            <span className="product-card__price">
+              ${priceWithDiscount}
+              <span className="product-card__price_discount">${price}</span>
+            </span>
+          ) : (
+            <span className="product-card__price">${price}</span>
+          )}
           <Rating readonly allowFraction initialValue={rating} size={18} />
           {commentsCount && (
             <span className="product-card__comments-count">{`"(${commentsCount})"`}</span>
