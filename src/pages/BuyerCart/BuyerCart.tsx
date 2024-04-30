@@ -1,15 +1,19 @@
 import { Button, Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { ProductsTable, EmptyCart } from "./components";
+import { ProductsTable, EmptyCart, CartTotal } from "./components";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "@/store";
 import "./style.scss";
-
-const HOME_PATH = "/";
+import { useMemo } from "react";
 
 const BuyerCart = () => {
-  const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
   const navigate = useNavigate();
+
+  const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
+  const productsTotalPrice = useMemo(
+    () => buyerCartList.reduce((acc, { price }) => acc + price, 0),
+    [buyerCartList]
+  );
 
   return (
     <Container>
@@ -21,7 +25,7 @@ const BuyerCart = () => {
               <Button
                 variant="outline-dark"
                 className="buyer-cart-page__button"
-                onClick={() => navigate(HOME_PATH)}
+                onClick={() => navigate("/")}
               >
                 Return To Shop
               </Button>
@@ -32,6 +36,9 @@ const BuyerCart = () => {
               >
                 Update Cart
               </Button>
+            </div>
+            <div className="buyer-cart-page__row">
+              <CartTotal productsTotalPrice={productsTotalPrice} />
             </div>
           </>
         ) : (
