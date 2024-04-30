@@ -26,9 +26,9 @@ export const ProductsByCategory = () => {
   );
 
   const [skipCount, setSkipCount] = useState(0);
-  const [paginationParams, setPaginationParams] = useState<PaginateParams>(
-    initialPaginationParams
-  );
+  const [paginationParams, setPaginationParams] = useState<PaginateParams>({
+    ...initialPaginationParams,
+  });
 
   const hasMoreItems = useMemo(
     () => products.length < paginationParams.total,
@@ -48,16 +48,8 @@ export const ProductsByCategory = () => {
       })) as AxiosDataResponse;
 
       const { products, ...respPagination } = response.data;
-      const nextSkipCount = skipCount + 1;
-      setSkipCount(nextSkipCount);
 
-      const paginationData = {
-        ...paginationParams,
-        skip: nextSkipCount * paginationParams.limit,
-        total: respPagination.total,
-      };
-
-      setPaginationParams(paginationData);
+      setPaginationParams(respPagination);
 
       return formatFetchedProductForCard(products || []);
     } catch (error) {
@@ -69,19 +61,30 @@ export const ProductsByCategory = () => {
   };
 
   const fetchMoreProducts = async () => {
+    const nextSkipCount = skipCount + 1;
+    setSkipCount(nextSkipCount);
+
+    const pagination = {
+      ...paginationParams,
+      skip: nextSkipCount * paginationParams.limit,
+    };
+
     const products = await getProducts({
+      pagination,
       category: currentCategory,
-      pagination: paginationParams,
     });
 
     setProducts((prevProducts) => [...prevProducts, ...products]);
   };
 
   useEffect(() => {
+    setSkipCount(0);
+    setPaginationParams({ ...initialPaginationParams });
+
     const getProductsByCategory = async () => {
       const products = await getProducts({
         category: currentCategory,
-        pagination: initialPaginationParams,
+        pagination: { ...initialPaginationParams },
       });
       setProducts(products);
     };
