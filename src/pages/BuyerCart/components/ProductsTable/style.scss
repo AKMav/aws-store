@@ -7,9 +7,11 @@
 
   &__cell {
     padding: 24px;
+    width: 20%;
     margin-bottom: 40px;
 
     &:first-of-type {
+      width: 40%;
       padding-left: 40px;
     }
 
