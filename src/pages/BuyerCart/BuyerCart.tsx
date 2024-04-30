@@ -21,35 +21,30 @@ const BuyerCart = () => {
   );
 
   return (
-    <Container>
-      <div className="buyer-cart-page">
-        {buyerCartList?.length ? (
-          <>
-            <ProductsTable products={buyerCartList} />
-            <div className="buyer-cart-page__row buttons-row">
-              <Button
-                variant="outline-dark"
-                className="buyer-cart-page__button"
-                onClick={() => navigate("/")}
-              >
-                Return To Shop
-              </Button>
+    <Container className="buyer-cart-page">
+      {buyerCartList?.length ? (
+        <>
+          <ProductsTable products={buyerCartList} />
+          <div className="buyer-cart-page__row buttons-row">
+            <Button
+              variant="outline-dark"
+              className="buyer-cart-page__button"
+              onClick={() => navigate("/")}
+            >
+              Return To Shop
+            </Button>
 
-              <Button
-                variant="outline-dark"
-                className="buyer-cart-page__button"
-              >
-                Update Cart
-              </Button>
-            </div>
-            <div className="buyer-cart-page__row">
-              <CartTotal productsTotalPrice={productsTotalPrice} />
-            </div>
-          </>
-        ) : (
-          <EmptyCart />
-        )}
-      </div>
+            <Button variant="outline-dark" className="buyer-cart-page__button">
+              Update Cart
+            </Button>
+          </div>
+          <div className="buyer-cart-page__row">
+            <CartTotal productsTotalPrice={productsTotalPrice} />
+          </div>
+        </>
+      ) : (
+        <EmptyCart />
+      )}
     </Container>
   );
 };
