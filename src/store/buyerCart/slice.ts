@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ICategoriesState, BUYER_CART_KEY } from "./types";
+import { ICategoriesState, BUYER_CART_KEY, SLICE_NAME } from "./types";
 import { getListFromStorage } from "@/helpers";
 import {
   updateAll,
@@ -13,7 +13,7 @@ const initialState: ICategoriesState = {
 };
 
 const categoriesSlice = createSlice({
-  name: "buyerCart",
+  name: SLICE_NAME,
   initialState,
   reducers: {
     updateAll,
