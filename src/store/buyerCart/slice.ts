@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ICategoriesState, BUYER_CART_KEY } from "./types";
+import { getListFromStorage } from "@/helpers";
 import {
   updateAll,
   addProduct,
@@ -7,13 +8,8 @@ import {
   changeQuantity,
 } from "./actions";
 
-const listFromStorage = localStorage.getItem(BUYER_CART_KEY);
-const buyerCartInit: ICategoriesState["list"] = listFromStorage
-  ? JSON.parse(listFromStorage)
-  : [];
-
 const initialState: ICategoriesState = {
-  list: buyerCartInit,
+  list: getListFromStorage<ICategoriesState["list"]>(BUYER_CART_KEY),
 };
 
 const categoriesSlice = createSlice({
