@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 
 interface IProps {
-  className?: string;
+  className?: string | null;
   children?: React.ReactNode;
   clickHandle?: () => void;
 }

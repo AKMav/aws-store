@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { Fade } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
 import { RoundButton } from "@/components/UIKit";
@@ -9,16 +9,22 @@ import "./style.scss";
 
 interface IProps {
   product: IProductCard;
-  buyerCartListIds: Array<IProductCard["id"]>;
+  isProductInWishlist?: boolean;
+  isProductInCart?: boolean;
   onAddToCart: (item: IProductCard) => void;
   onRemoveFromCart: (id: IProductCard["id"]) => void;
+  onAddToWishlist: (item: IProductCard) => void;
+  onRemoveFromWishlist: (id: IProductCard["id"]) => void;
 }
 
 export const ProductCard = ({
   product,
-  buyerCartListIds,
+  isProductInCart,
+  isProductInWishlist,
   onAddToCart,
   onRemoveFromCart,
+  onAddToWishlist,
+  onRemoveFromWishlist,
 }: IProps) => {
   const [addBtnVisibility, setAddBtnVisibility] = useState(false);
 
@@ -30,14 +36,21 @@ export const ProductCard = ({
     setAddBtnVisibility(false);
   };
 
-  const addToWishList = (product: IProductCard) => {
-    console.log(product, " - add to wishlist");
+  const wishlistActionToggle = (product: IProductCard) => {
+    if (isProductInWishlist) {
+      onRemoveFromWishlist(product.id);
+    } else {
+      onAddToWishlist(product);
+    }
   };
 
-  const wasAddedToCart = useCallback(
-    (id: IProductCard["id"]) => buyerCartListIds.includes(id),
-    [buyerCartListIds]
-  );
+  const buyerCartActionToggle = (product: IProductCard) => {
+    if (isProductInCart) {
+      onRemoveFromCart(product.id);
+    } else {
+      onAddToCart(product);
+    }
+  };
 
   const openProduct = (id: IProductCard["id"]) => {
     console.log(id, " - open");
@@ -80,7 +93,10 @@ export const ProductCard = ({
         />
 
         <div className="product-card__buttons">
-          <RoundButton clickHandle={() => addToWishList(product)}>
+          <RoundButton
+            className={isProductInWishlist ? "button-checked" : null}
+            clickHandle={() => wishlistActionToggle(product)}
+          >
             <img src={HeartIcon} width={24} height={24} draggable="false" />
           </RoundButton>
           <RoundButton clickHandle={() => openProduct(id)}>
@@ -89,21 +105,14 @@ export const ProductCard = ({
         </div>
 
         <Fade in={addBtnVisibility} timeout={500}>
-          {wasAddedToCart(id) ? (
-            <button
-              className="product-card__cart-button product-card__cart-button_remove"
-              onClick={() => onRemoveFromCart(id)}
-            >
-              Remove From Cart
-            </button>
-          ) : (
-            <button
-              className="product-card__cart-button"
-              onClick={() => onAddToCart(product)}
-            >
-              Add To Cart
-            </button>
-          )}
+          <button
+            className={`product-card__cart-button${
+              isProductInCart ? " product-card__cart-button_remove" : ""
+            }`}
+            onClick={() => buyerCartActionToggle(product)}
+          >
+            {isProductInCart ? "Remove From Cart" : "Add To Cart"}
+          </button>
         </Fade>
       </div>
 

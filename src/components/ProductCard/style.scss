@@ -96,4 +96,12 @@
     font-size: 14px;
     color: var(--text-2);
   }
+
+  .button-checked {
+    background-color: var(--secondary-3);
+
+    img {
+      filter: invert(1);
+    }
+  }
 }
