@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
 import { removeFromWishlist } from "@/store/wishlist";
@@ -29,14 +29,30 @@ const Wishlist = () => {
     onlyRemoveFromWishlist(product.id);
   };
 
+  const addAllToCar = () => {
+    wishlist.forEach((product) => addToCart(product));
+  };
+
   return (
     <Container className="wishlist-page">
       {wishlist.length ? (
-        <WishProductList
-          removeFromWishlist={onlyRemoveFromWishlist}
-          addProductToBuyerCart={addToCart}
-          list={wishlist}
-        />
+        <>
+          <div className="wishlist-page__row">
+            <span>Wishlist ({wishlist.length})</span>
+            <Button
+              variant="outline-dark"
+              className="wishlist-page__button"
+              onClick={addAllToCar}
+            >
+              Move All To Bag
+            </Button>
+          </div>
+          <WishProductList
+            removeFromWishlist={onlyRemoveFromWishlist}
+            addProductToBuyerCart={addToCart}
+            list={wishlist}
+          />
+        </>
       ) : (
         <EmptyWishlist />
       )}
