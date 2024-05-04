@@ -1,18 +1,11 @@
-.not-found {
-  height: 100%;
+.not-found-page {
   padding: 24px 0;
-  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-
-  &__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 80px;
-    flex: 1 0 auto;
-  }
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  flex: 1 0 auto;
 
   &__row {
     justify-content: center;
