@@ -5,7 +5,7 @@ import "./style.scss";
 export const NavList = () => {
   const navLinks = [
     { path: Routes.Home, title: "Home" },
-    { path: Routes.Contacts, title: "Contacts" },
+    { path: Routes.Contact, title: "Contact" },
     { path: Routes.About, title: "About" },
     { path: Routes.Login, title: "Sign up" },
   ];
