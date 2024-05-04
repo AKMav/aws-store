@@ -49,6 +49,7 @@ export const ProductCard = ({
       onRemoveFromCart(product.id);
     } else {
       onAddToCart(product);
+      onRemoveFromWishlist(product.id);
     }
   };
 

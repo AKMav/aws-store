@@ -93,13 +93,11 @@ export const ProductsByCategory = () => {
   }, [currentCategory]);
 
   return (
-    <>
-      <ProductsList
-        products={products}
-        loading={loading}
-        hasMoreItems={hasMoreItems}
-        fetchMore={fetchMoreProducts}
-      />
-    </>
+    <ProductsList
+      products={products}
+      loading={loading}
+      hasMoreItems={hasMoreItems}
+      fetchMore={fetchMoreProducts}
+    />
   );
 };

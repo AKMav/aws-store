@@ -8,15 +8,24 @@ import { WishProductList, EmptyWishlist } from "./components";
 import "./style.scss";
 
 const Wishlist = () => {
-  const wishlist = useSelector(({ wishlist }: RootState) => wishlist.list);
   const dispatch = useDispatch();
+
+  const wishlist = useSelector(({ wishlist }: RootState) => wishlist.list);
+  const buyerCartList = useSelector(
+    ({ buyerCart }: RootState) => buyerCart.list
+  );
+
+  const isProductInCart = (id: IProductCard["id"]) =>
+    buyerCartList.findIndex((item) => item.id === id) > -1;
 
   const onlyRemoveFromWishlist = (id: IProductCard["id"]) => {
     dispatch(removeFromWishlist(id));
   };
 
   const addToCart = (product: IProductCard) => {
-    dispatch(addProductToCart(product));
+    if (!isProductInCart(product.id)) {
+      dispatch(addProductToCart(product));
+    }
     onlyRemoveFromWishlist(product.id);
   };
 
