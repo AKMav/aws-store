@@ -1,17 +1,6 @@
 import EmptyCartImage from "@/assets/images/empty-card.png";
-import { BackHomeButton } from "@/components/UIKit";
-import "./style.scss";
+import { EmptyList } from "@/components";
 
 export const EmptyCart = () => {
-  return (
-    <div className="empty-cart">
-      <img
-        src={EmptyCartImage}
-        draggable="false"
-        alt="empty card image"
-        className="empty-cart__image"
-      />
-      <BackHomeButton />
-    </div>
-  );
+  return <EmptyList imageSrc={EmptyCartImage} />;
 };

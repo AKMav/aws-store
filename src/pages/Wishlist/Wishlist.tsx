@@ -4,7 +4,7 @@ import { RootState } from "@/store";
 import { removeFromWishlist } from "@/store/wishlist";
 import { addProductToCart } from "@/store/buyerCart";
 import { IProductCard } from "@/types/products";
-import { WishProductList } from "./components/WishProductList/WishProductList";
+import { WishProductList, EmptyWishlist } from "./components";
 import "./style.scss";
 
 const Wishlist = () => {
@@ -22,11 +22,15 @@ const Wishlist = () => {
 
   return (
     <Container className="wishlist-page">
-      <WishProductList
-        removeFromWishlist={onlyRemoveFromWishlist}
-        addProductToBuyerCart={addToCart}
-        list={wishlist}
-      />
+      {wishlist.length ? (
+        <WishProductList
+          removeFromWishlist={onlyRemoveFromWishlist}
+          addProductToBuyerCart={addToCart}
+          list={wishlist}
+        />
+      ) : (
+        <EmptyWishlist />
+      )}
     </Container>
   );
 };
