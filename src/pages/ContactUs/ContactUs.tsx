@@ -1,10 +1,11 @@
 import { Container } from "react-bootstrap";
+import { ContactsInfoCard } from "./components";
 import "./style.scss";
 
 const ContactUs = () => {
   return (
     <Container className="contact-us-page">
-      <h2>Contact us</h2>
+      <ContactsInfoCard />
     </Container>
   );
 };

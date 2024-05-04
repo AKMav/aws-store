@@ -1,0 +1,45 @@
+.contacts-info-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 340px;
+  gap: 32px;
+
+  &__divider {
+    border-bottom: 1px solid var(--card);
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .section-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      &__image {
+        &-wrapper {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: var(--secondary-3);
+        }
+      }
+
+      &__title {
+        margin: 0;
+        font-size: 16px;
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+  }
+}
