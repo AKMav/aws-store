@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { NotFound, HomePage, BuyerCart, Wishlist } from "@/pages";
+import { NotFound, HomePage, BuyerCart, Wishlist, ContactUs } from "@/pages";
 import { Routes } from "./routes";
 import { App } from "./App";
 
@@ -38,6 +38,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense>
             <NotFound />
+          </Suspense>
+        ),
+      },
+      {
+        path: Routes.Contact,
+        element: (
+          <Suspense>
+            <ContactUs />
           </Suspense>
         ),
       },
