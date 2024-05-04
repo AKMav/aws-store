@@ -1,9 +1,9 @@
-import React from "react";
+import { ReactNode } from "react";
 import "./style.scss";
 
 interface IProps {
   className?: string | null;
-  children?: React.ReactNode;
+  children?: ReactNode;
   clickHandle?: () => void;
 }
 
