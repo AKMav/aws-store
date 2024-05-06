@@ -19,6 +19,7 @@ export const Footer = () => {
                 <p>Get 10% off your first order</p>
               </div>
               <Form.Control
+                id="footer-mail-input"
                 data-bs-theme="dark"
                 type="email"
                 placeholder="Enter your email"
