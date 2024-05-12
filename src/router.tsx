@@ -1,7 +1,14 @@
 import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { NotFound, HomePage, BuyerCart, Wishlist, ContactUs } from "@/pages";
-import { Routes } from "./routes";
+import {
+  NotFound,
+  HomePage,
+  BuyerCart,
+  Wishlist,
+  ContactUs,
+  Product,
+} from "@/pages";
+import { Routes, RouteParams } from "./routes";
 import { App } from "./App";
 
 export const router = createBrowserRouter([
@@ -22,6 +29,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense>
             <BuyerCart />
+          </Suspense>
+        ),
+      },
+      {
+        path: `${Routes.Products}/:${RouteParams.ProductId}`,
+        element: (
+          <Suspense>
+            <Product />
           </Suspense>
         ),
       },
