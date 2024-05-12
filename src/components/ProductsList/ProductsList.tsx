@@ -1,10 +1,12 @@
 import { Button, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { RootState } from "@/store";
 import { addProductToCart, removeProductFromCart } from "@/store/buyerCart";
 import { addToWishlist, removeFromWishlist } from "@/store/wishlist";
 import { ProductCard } from "@/components";
 import { IProductCard } from "@/types/products";
+import { Routes } from "@/routes";
 import "./style.scss";
 
 interface IProps {
@@ -23,6 +25,7 @@ export const ProductsList = ({
   fetchMore,
 }: IProps) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // buyer cart logic
   const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
@@ -51,6 +54,11 @@ export const ProductsList = ({
 
   const isProductInWishlist = (id: IProductCard["id"]) =>
     wishlist.findIndex((item) => item.id === id) > -1;
+
+  // open product
+  const openProduct = (id: IProductCard["id"]) => {
+    navigate(`${Routes.Products}/${id}`);
+  };
 
   return (
     <div className={classes ? `products-list ${classes}` : "products-list"}>
@@ -86,6 +94,7 @@ export const ProductsList = ({
                 onRemoveFromCart={onProductRemoveFromCart}
                 onAddToWishlist={onProductAddToWishlist}
                 onRemoveFromWishlist={onProductRemoveFromWishlist}
+                onOpenProduct={openProduct}
               />
             ))}
           </div>

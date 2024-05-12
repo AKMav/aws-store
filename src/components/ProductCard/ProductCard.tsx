@@ -15,6 +15,7 @@ interface IProps {
   onRemoveFromCart: (id: IProductCard["id"]) => void;
   onAddToWishlist: (item: IProductCard) => void;
   onRemoveFromWishlist: (id: IProductCard["id"]) => void;
+  onOpenProduct: (id: IProductCard["id"]) => void;
 }
 
 export const ProductCard = ({
@@ -25,6 +26,7 @@ export const ProductCard = ({
   onRemoveFromCart,
   onAddToWishlist,
   onRemoveFromWishlist,
+  onOpenProduct,
 }: IProps) => {
   const [addBtnVisibility, setAddBtnVisibility] = useState(false);
 
@@ -54,7 +56,7 @@ export const ProductCard = ({
   };
 
   const openProduct = (id: IProductCard["id"]) => {
-    console.log(id, " - open");
+    onOpenProduct(id);
   };
 
   const {
