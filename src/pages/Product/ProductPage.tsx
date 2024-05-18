@@ -2,14 +2,15 @@ import "./style.scss";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { IRouteParams } from "@/types/routeParams";
+import { ProductFullCard } from "./components";
 
 export const ProductPage = () => {
   const { productId } = useParams<IRouteParams["ProductId"]>();
 
   return (
-    <div className="home-page">
+    <div className="product-page">
       <Container>
-        <h1>Product id = {productId}</h1>
+        <ProductFullCard id={productId} />
       </Container>
     </div>
   );

@@ -132,7 +132,7 @@ export const ProductCard = ({
           )}
           <Rating readonly allowFraction initialValue={rating} size={18} />
           {commentsCount && (
-            <span className="product-card__comments-count">{`"(${commentsCount})"`}</span>
+            <span className="product-card__comments-count">{`(${commentsCount})`}</span>
           )}
         </div>
       </div>

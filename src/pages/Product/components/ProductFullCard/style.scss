@@ -1,0 +1,18 @@
+.product-full-card {
+  &__row {
+    display: flex;
+    gap: 70px;
+  }
+
+  &__col {
+    padding: 0;
+  }
+
+  .product-details {
+    margin-bottom: 24px;
+  }
+
+  .product-actions {
+    margin-bottom: 40px;
+  }
+}
