@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { IProductCard } from "@/types/products";
 import { fetchProductsByCategory } from "@/services/products";
-import { formatFetchedProductForCard } from "@/decorators/productFormatters";
+import { formatFetchedProductsForCard } from "@/decorators/productFormatters";
 import { RootState } from "@/store";
 import { AxiosDataResponse, PaginateParams } from "../../types";
 
@@ -51,7 +51,7 @@ export const ProductsByCategory = () => {
 
       setPaginationParams(respPagination);
 
-      return formatFetchedProductForCard(products || []);
+      return formatFetchedProductsForCard(products || []);
     } catch (error) {
       console.error(error);
     } finally {

@@ -5,7 +5,11 @@ import PlusIcon from "@/assets/icons/plus-icon.svg";
 import HeartIcon from "@/assets/icons/heart.svg";
 import "./style.scss";
 
-export const ProductActions = () => {
+interface IProps {
+  inStock: boolean;
+}
+
+export const ProductActions = ({ inStock }: IProps) => {
   const [count, setCount] = useState(1);
 
   const decrementCount = () => {
@@ -53,6 +57,7 @@ export const ProductActions = () => {
         <Button
           variant="danger"
           className="product-actions__buy-button"
+          disabled={!inStock}
           onClick={() => {
             console.log("buy now click");
           }}

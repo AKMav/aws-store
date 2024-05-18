@@ -30,3 +30,9 @@ export interface IProductCard extends IProductBase {
 export interface ICartProduct extends IProductBase {
   quantity: number;
 }
+
+export interface IFullProduct extends IProductCard {
+  images: string[];
+  stock: boolean;
+  description: string;
+}
