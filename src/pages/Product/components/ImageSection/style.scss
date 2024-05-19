@@ -1,0 +1,31 @@
+.full-product-images {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 16px;
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__image-container {
+    background-color: var(--secondary-2);
+    border-radius: 4px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.mini {
+      max-height: 170px;
+      max-width: 140px;
+    }
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}

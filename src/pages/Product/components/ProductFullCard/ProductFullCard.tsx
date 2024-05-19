@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { getProductById } from "@/services/products";
 import { formatFetchedProductForFullCard } from "@/decorators/productFormatters";
+import { IFullProduct } from "@/types/products";
 import { DeliverySection } from "../DeliverySection/DeliverySection";
 import { ProductDetails } from "../ProductDetails/ProductDetails";
 import { ProductActions } from "../ProductActions/ProductActions";
-import { IFullProduct } from "@/types/products";
 import { ProductError } from "../ProductError/ProductError";
+import { ImageSection } from "../ImageSection/ImageSection";
 import "./style.scss";
 
 interface IProps {
@@ -56,7 +57,10 @@ export const ProductFullCard = ({ id }: IProps) => {
         <Container className="product-full-card">
           <Row className="product-full-card__row">
             <Col md={7} className="product-full-card__col">
-              <div className="product-full-card__picture"></div>
+              <ImageSection
+                images={product.images}
+                mainImage={product.mainPicture}
+              />
             </Col>
             <Col className="product-full-card__col">
               <ProductDetails
