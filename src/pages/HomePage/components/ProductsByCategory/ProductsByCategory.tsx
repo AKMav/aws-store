@@ -32,7 +32,7 @@ export const ProductsByCategory = () => {
 
   const hasMoreItems = useMemo(
     () => products.length < paginationParams.total,
-    [paginationParams, skipCount]
+    [paginationParams, skipCount, products]
   );
 
   const getProducts = async ({ category, pagination }: IFetchProductsProps) => {

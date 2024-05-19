@@ -24,4 +24,12 @@
   .product-actions {
     margin-bottom: 40px;
   }
+
+  .full-product-images {
+    max-height: 600px;
+
+    &__row {
+      overflow-y: auto;
+    }
+  }
 }
