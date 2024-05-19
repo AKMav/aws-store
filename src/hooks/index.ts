@@ -1,1 +1,2 @@
-export { useCacheCart, useCacheWishlist } from "./useCacheToStorage";
+export * from "./useCacheToStorage";
+export * from "./useWishlist";

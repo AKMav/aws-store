@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "@/store";
 import { addProductToCart, removeProductFromCart } from "@/store/buyerCart";
-import { addToWishlist, removeFromWishlist } from "@/store/wishlist";
 import { ProductCard } from "@/components";
 import { IProductCard } from "@/types/products";
 import { Routes } from "@/routes";
+import { useWishlist } from "@/hooks";
 import "./style.scss";
 
 interface IProps {
@@ -42,18 +42,11 @@ export const ProductsList = ({
     buyerCartList.findIndex((item) => item.id === id) > -1;
 
   // wishlist logic
-  const wishlist = useSelector((state: RootState) => state.wishlist.list);
-
-  const onProductAddToWishlist = (product: IProductCard) => {
-    dispatch(addToWishlist(product));
-  };
-
-  const onProductRemoveFromWishlist = (id: IProductCard["id"]) => {
-    dispatch(removeFromWishlist(id));
-  };
-
-  const isProductInWishlist = (id: IProductCard["id"]) =>
-    wishlist.findIndex((item) => item.id === id) > -1;
+  const {
+    onProductAddToWishlist,
+    onProductRemoveFromWishlist,
+    isProductInWishlist,
+  } = useWishlist();
 
   // open product
   const openProduct = (id: IProductCard["id"]) => {

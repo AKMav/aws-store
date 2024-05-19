@@ -13,7 +13,7 @@ export interface IFetchedProduct {
 }
 
 interface IProductBase {
-  id: string | number;
+  id: number;
   name: string;
   price: number;
   mainPicture: string;

@@ -7,9 +7,15 @@ import "./style.scss";
 
 interface IProps {
   inStock: boolean;
+  inWishlist: boolean;
+  toggleWishlist: () => void;
 }
 
-export const ProductActions = ({ inStock }: IProps) => {
+export const ProductActions = ({
+  inStock,
+  inWishlist,
+  toggleWishlist,
+}: IProps) => {
   const [count, setCount] = useState(1);
 
   const decrementCount = () => {
@@ -65,11 +71,9 @@ export const ProductActions = ({ inStock }: IProps) => {
           Buy Now
         </Button>
         <Button
-          variant="outline-secondary"
+          variant={inWishlist ? "danger" : "outline-secondary"}
           className="product-actions__wishlist-button"
-          onClick={() => {
-            console.log("wishlist click");
-          }}
+          onClick={toggleWishlist}
         >
           <img src={HeartIcon} width={32} height={32} />
         </Button>

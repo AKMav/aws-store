@@ -8,6 +8,7 @@ import { ProductDetails } from "../ProductDetails/ProductDetails";
 import { ProductActions } from "../ProductActions/ProductActions";
 import { ProductError } from "../ProductError/ProductError";
 import { ImageSection } from "../ImageSection/ImageSection";
+import { useWishlist } from "@/hooks";
 import "./style.scss";
 
 interface IProps {
@@ -17,6 +18,13 @@ interface IProps {
 export const ProductFullCard = ({ id }: IProps) => {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState<IFullProduct | null>(null);
+
+  // wishlist action handle
+  const {
+    onProductAddToWishlist,
+    onProductRemoveFromWishlist,
+    isProductInWishlist,
+  } = useWishlist();
 
   const getProduct = async (id: string | number) => {
     try {
@@ -28,6 +36,16 @@ export const ProductFullCard = ({ id }: IProps) => {
       console.error(error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const toggleWishlist = () => {
+    if (!product) return;
+
+    if (isProductInWishlist(id)) {
+      onProductRemoveFromWishlist(product.id);
+    } else {
+      onProductAddToWishlist(product);
     }
   };
 
@@ -71,7 +89,11 @@ export const ProductFullCard = ({ id }: IProps) => {
                 price={product.priceWithDiscount || product.price}
                 description={product.description}
               />
-              <ProductActions inStock={product.stock} />
+              <ProductActions
+                inStock={product.stock}
+                inWishlist={isProductInWishlist(id)}
+                toggleWishlist={toggleWishlist}
+              />
               <DeliverySection />
             </Col>
           </Row>
