@@ -19,6 +19,12 @@ export const useCartActions = () => {
     product: IProductCard;
     quantity: number;
   }) => {
+    const id = payload.product.id;
+
+    if (isProductInCart(id)) {
+      onProductRemoveFromCart(id);
+    }
+
     dispatch(addProductToCartWithQuantity(payload));
   };
 

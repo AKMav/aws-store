@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { Routes } from "@/routes";
 import { getProductById } from "@/services/products";
 import { formatFetchedProductForFullCard } from "@/decorators/productFormatters";
 import { IFullProduct } from "@/types/products";
@@ -16,6 +18,7 @@ interface IProps {
 }
 
 export const ProductFullCard = ({ id }: IProps) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState<IFullProduct | null>(null);
 
@@ -27,8 +30,14 @@ export const ProductFullCard = ({ id }: IProps) => {
   } = useWishlistActions();
 
   // cart actions handle
-  const { onSimpleProductAddToCart, onProductRemoveFromCart } =
-    useCartActions();
+  const { onProductAddToCartWithQuantity } = useCartActions();
+
+  const onBuyNow = (quantity: number) => {
+    if (!product) return;
+
+    onProductAddToCartWithQuantity({ product, quantity });
+    navigate(`/${Routes.Cart}`);
+  };
 
   const getProduct = async (id: string | number) => {
     try {
@@ -97,6 +106,7 @@ export const ProductFullCard = ({ id }: IProps) => {
                 inStock={product.stock}
                 inWishlist={isProductInWishlist(id)}
                 toggleWishlist={toggleWishlist}
+                onBuyNow={onBuyNow}
               />
               <DeliverySection />
             </Col>

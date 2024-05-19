@@ -9,12 +9,14 @@ interface IProps {
   inStock: boolean;
   inWishlist: boolean;
   toggleWishlist: () => void;
+  onBuyNow: (quantity: number) => void;
 }
 
 export const ProductActions = ({
   inStock,
   inWishlist,
   toggleWishlist,
+  onBuyNow,
 }: IProps) => {
   const [count, setCount] = useState(1);
 
@@ -64,9 +66,7 @@ export const ProductActions = ({
           variant="danger"
           className="product-actions__buy-button"
           disabled={!inStock}
-          onClick={() => {
-            console.log("buy now click");
-          }}
+          onClick={() => onBuyNow(count)}
         >
           Buy Now
         </Button>
