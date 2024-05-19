@@ -1,12 +1,10 @@
 import { Button, Spinner } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "@/store";
-import { addProductToCart, removeProductFromCart } from "@/store/buyerCart";
+import { useCartActions } from "@/hooks";
 import { ProductCard } from "@/components";
 import { IProductCard } from "@/types/products";
 import { Routes } from "@/routes";
-import { useWishlist } from "@/hooks";
+import { useWishlistActions } from "@/hooks";
 import "./style.scss";
 
 interface IProps {
@@ -24,29 +22,18 @@ export const ProductsList = ({
   hasMoreItems,
   fetchMore,
 }: IProps) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // buyer cart logic
-  const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
-
-  const onProductAddToCart = (product: IProductCard) => {
-    dispatch(addProductToCart(product));
-  };
-
-  const onProductRemoveFromCart = (id: IProductCard["id"]) => {
-    dispatch(removeProductFromCart(id));
-  };
-
-  const isProductInCart = (id: IProductCard["id"]) =>
-    buyerCartList.findIndex((item) => item.id === id) > -1;
+  const { isProductInCart, onSimpleProductAddToCart, onProductRemoveFromCart } =
+    useCartActions();
 
   // wishlist logic
   const {
     onProductAddToWishlist,
     onProductRemoveFromWishlist,
     isProductInWishlist,
-  } = useWishlist();
+  } = useWishlistActions();
 
   // open product
   const openProduct = (id: IProductCard["id"]) => {
@@ -83,7 +70,7 @@ export const ProductsList = ({
                 product={product}
                 isProductInWishlist={isProductInWishlist(product.id)}
                 isProductInCart={isProductInCart(product.id)}
-                onAddToCart={onProductAddToCart}
+                onAddToCart={onSimpleProductAddToCart}
                 onRemoveFromCart={onProductRemoveFromCart}
                 onAddToWishlist={onProductAddToWishlist}
                 onRemoveFromWishlist={onProductRemoveFromWishlist}

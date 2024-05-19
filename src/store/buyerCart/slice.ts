@@ -3,9 +3,9 @@ import { ICategoriesState, BUYER_CART_KEY, SLICE_NAME } from "./types";
 import { getListFromStorage } from "@/helpers";
 import {
   updateAll,
-  addProduct,
   removeProduct,
   changeQuantity,
+  addProductWithQuantity,
 } from "./actions";
 
 const initialState: ICategoriesState = {
@@ -17,9 +17,9 @@ const categoriesSlice = createSlice({
   initialState,
   reducers: {
     updateAll,
-    addProduct,
     removeProduct,
     changeQuantity,
+    addProductWithQuantity,
   },
 });
 
@@ -27,7 +27,7 @@ export default categoriesSlice.reducer;
 
 export const {
   updateAll: updateCartList,
-  addProduct: addProductToCart,
+  addProductWithQuantity: addProductToCartWithQuantity,
   removeProduct: removeProductFromCart,
   changeQuantity: cartProductQuantityChange,
 } = categoriesSlice.actions;

@@ -1,32 +1,18 @@
 import { Button, Container } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/store";
-import { removeFromWishlist } from "@/store/wishlist";
-import { addProductToCart } from "@/store/buyerCart";
+import { useCartActions, useWishlistActions } from "@/hooks";
 import { IProductCard } from "@/types/products";
 import { WishProductList, EmptyWishlist } from "./components";
 import "./style.scss";
 
 const Wishlist = () => {
-  const dispatch = useDispatch();
-
-  const wishlist = useSelector(({ wishlist }: RootState) => wishlist.list);
-  const buyerCartList = useSelector(
-    ({ buyerCart }: RootState) => buyerCart.list
-  );
-
-  const isProductInCart = (id: IProductCard["id"]) =>
-    buyerCartList.findIndex((item) => item.id === id) > -1;
-
-  const onlyRemoveFromWishlist = (id: IProductCard["id"]) => {
-    dispatch(removeFromWishlist(id));
-  };
+  const { onSimpleProductAddToCart, isProductInCart } = useCartActions();
+  const { onProductRemoveFromWishlist, wishlist } = useWishlistActions();
 
   const addToCart = (product: IProductCard) => {
     if (!isProductInCart(product.id)) {
-      dispatch(addProductToCart(product));
+      onSimpleProductAddToCart(product);
     }
-    onlyRemoveFromWishlist(product.id);
+    onProductRemoveFromWishlist(product.id);
   };
 
   const addAllToCar = () => {
@@ -48,7 +34,7 @@ const Wishlist = () => {
             </Button>
           </div>
           <WishProductList
-            removeFromWishlist={onlyRemoveFromWishlist}
+            removeFromWishlist={onProductRemoveFromWishlist}
             addProductToBuyerCart={addToCart}
             list={wishlist}
           />

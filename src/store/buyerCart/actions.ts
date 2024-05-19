@@ -9,18 +9,19 @@ const updateAll = (
   state.list = action.payload;
 };
 
-const addProduct = (
+const addProductWithQuantity = (
   state: ICategoriesState,
-  action: PayloadAction<IProductCard>
+  action: PayloadAction<{ product: IProductCard; quantity: number }>
 ) => {
-  const { id, price, name, mainPicture, priceWithDiscount } = action.payload;
+  const { id, price, name, mainPicture, priceWithDiscount } =
+    action.payload.product;
   const product: ICartProduct = {
     id,
     name,
     price,
     priceWithDiscount,
     mainPicture,
-    quantity: 1,
+    quantity: action.payload.quantity,
   };
   state.list = [...state.list, product];
 };
@@ -44,4 +45,4 @@ const removeProduct = (
   state.list = [...state.list].filter(({ id }) => action.payload !== id);
 };
 
-export { updateAll, addProduct, removeProduct, changeQuantity };
+export { updateAll, addProductWithQuantity, removeProduct, changeQuantity };

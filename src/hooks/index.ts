@@ -1,2 +1,3 @@
 export * from "./useCacheToStorage";
-export * from "./useWishlist";
+export * from "./useWishlistActions";
+export * from "./useCartActions";

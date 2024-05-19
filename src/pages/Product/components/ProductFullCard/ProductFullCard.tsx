@@ -8,7 +8,7 @@ import { ProductDetails } from "../ProductDetails/ProductDetails";
 import { ProductActions } from "../ProductActions/ProductActions";
 import { ProductError } from "../ProductError/ProductError";
 import { ImageSection } from "../ImageSection/ImageSection";
-import { useWishlist } from "@/hooks";
+import { useWishlistActions, useCartActions } from "@/hooks";
 import "./style.scss";
 
 interface IProps {
@@ -24,7 +24,11 @@ export const ProductFullCard = ({ id }: IProps) => {
     onProductAddToWishlist,
     onProductRemoveFromWishlist,
     isProductInWishlist,
-  } = useWishlist();
+  } = useWishlistActions();
+
+  // cart actions handle
+  const { onSimpleProductAddToCart, onProductRemoveFromCart } =
+    useCartActions();
 
   const getProduct = async (id: string | number) => {
     try {

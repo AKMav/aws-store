@@ -4,7 +4,7 @@ import { RootState } from "@/store";
 import { addToWishlist, removeFromWishlist } from "@/store/wishlist";
 import { IProductCard } from "@/types/products";
 
-export const useWishlist = () => {
+export const useWishlistActions = () => {
   const dispatch = useDispatch();
   const wishlist = useSelector((state: RootState) => state.wishlist.list);
 
@@ -23,6 +23,7 @@ export const useWishlist = () => {
   };
 
   return {
+    wishlist,
     isProductInWishlist,
     onProductAddToWishlist,
     onProductRemoveFromWishlist,
