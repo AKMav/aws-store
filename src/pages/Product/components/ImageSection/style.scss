@@ -6,6 +6,7 @@
   &__row {
     display: flex;
     flex-direction: column;
+    max-width: 170px;
     gap: 16px;
   }
 
@@ -18,8 +19,7 @@
     justify-content: center;
 
     &.mini {
-      max-height: 170px;
-      max-width: 140px;
+      height: 140px;
     }
   }
 
