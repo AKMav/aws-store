@@ -14,6 +14,10 @@
   &__wishlist-button {
     max-height: 44px;
     padding: 4px;
+
+    &.btn-danger img {
+      filter: invert(1);
+    }
   }
 
   .count-setter {
