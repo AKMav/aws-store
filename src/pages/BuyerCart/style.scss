@@ -1,0 +1,18 @@
+.buyer-cart-page {
+  padding: 40px 0;
+
+  &__row {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__button.btn {
+    padding: 15px 48px;
+    font-size: 16px;
+  }
+
+  .cart-total {
+    margin-left: auto;
+  }
+}

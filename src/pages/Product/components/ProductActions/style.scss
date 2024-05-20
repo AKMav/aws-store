@@ -1,0 +1,45 @@
+.product-actions {
+  &__buttons-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__buy-button {
+    width: 100%;
+    max-height: 44px;
+    padding: 10px 24px;
+  }
+
+  &__wishlist-button {
+    max-height: 44px;
+    padding: 4px;
+
+    &.btn-danger img {
+      filter: invert(1);
+    }
+  }
+
+  .count-setter {
+    max-height: 44px;
+
+    &__button,
+    &__result {
+      display: flex;
+      align-items: center;
+      padding: 10px 8px;
+    }
+
+    &__result,
+    &__button.minus-button {
+      border: 1px solid var(--text-2);
+    }
+
+    &__result {
+      border-left: none;
+      border-right: none;
+      padding: 8px 34px;
+      font-size: 20px;
+    }
+  }
+}

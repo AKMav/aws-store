@@ -1,0 +1,35 @@
+.product-full-card {
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+  }
+
+  &__col {
+    padding: 0;
+  }
+
+  &__spinner-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-details {
+    margin-bottom: 24px;
+  }
+
+  .product-actions {
+    margin-bottom: 40px;
+  }
+
+  .full-product-images {
+    max-height: 600px;
+
+    &__row {
+      overflow-y: auto;
+    }
+  }
+}
