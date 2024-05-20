@@ -1,8 +1,8 @@
 import { ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
 import { ICartProduct } from "@/types/products";
 import CrossIcon from "@/assets/icons/cross.svg";
 import { ProductNameCell } from "../ProductNameCell/ProductNameCell";
-import { useDispatch } from "react-redux";
 import {
   removeProductFromCart,
   cartProductQuantityChange,
@@ -16,14 +16,11 @@ interface IProps {
 export const ProductsTable = ({ products }: IProps) => {
   const dispatch = useDispatch();
 
-  const removeProduct = (id: string | number) => {
+  const removeProduct = (id: number) => {
     dispatch(removeProductFromCart(id));
   };
 
-  const changeQuantity = (
-    event: ChangeEvent<HTMLInputElement>,
-    id: string | number
-  ) => {
+  const changeQuantity = (event: ChangeEvent<HTMLInputElement>, id: number) => {
     const quantity = Number((event.target as HTMLInputElement).value);
 
     if (quantity <= 0) return;

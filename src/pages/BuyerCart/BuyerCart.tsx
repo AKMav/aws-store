@@ -35,10 +35,6 @@ const BuyerCart = () => {
             >
               Return To Shop
             </Button>
-
-            <Button variant="outline-dark" className="buyer-cart-page__button">
-              Update Cart
-            </Button>
           </div>
           <div className="buyer-cart-page__row">
             <CartTotal productsTotalPrice={productsTotalPrice} />
