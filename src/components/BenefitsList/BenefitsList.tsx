@@ -2,7 +2,7 @@ import "./style.scss";
 import deliveryIcon from "@/assets/icons/delivery-icon.svg";
 import callCentreIcon from "@/assets/icons/call-center-icon.svg";
 import secureIcon from "@/assets/icons/secure-icon.svg";
-import { BenefitCard } from "../UIKit";
+import { BenefitCard } from "../shared";
 
 export const BenefitsList = () => {
   const benefits = [

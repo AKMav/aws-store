@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { RoundButton } from "@/components/UIKit";
+import { RoundButton } from "@/components/shared";
 import WishlistLogo from "@/assets/icons/wishlist.svg";
 import { Routes } from "@/routes";
 import "./style.scss";

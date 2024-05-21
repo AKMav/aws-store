@@ -1,4 +1,4 @@
-import { FormCard } from "@/components/UIKit";
+import { FormCard } from "@/components/shared";
 import PhoneIcon from "@/assets/icons/phone-icon.svg";
 import MailIcon from "@/assets/icons/mail-icon.svg";
 import "./style.scss";

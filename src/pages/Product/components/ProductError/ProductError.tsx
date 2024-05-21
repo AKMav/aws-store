@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
-import { BackHomeButton } from "@/components/UIKit";
+import { BackHomeButton } from "@/components/shared";
 import "./style.scss";
 
 export const ProductError = () => {
