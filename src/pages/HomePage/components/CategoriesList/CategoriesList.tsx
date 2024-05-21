@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { Button, Spinner } from "react-bootstrap";
-import { fetchCategories } from "@/services/products";
+import { fetchCategories } from "@/api/products";
 import { normalizeCategories } from "@/decorators/categoriesFormatters";
 import { RootState } from "@/store";
 import { updateAllCategories, setCurrentCategory } from "@/store/categories";

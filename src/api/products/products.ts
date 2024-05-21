@@ -1,4 +1,4 @@
-import { httpClient } from "./axios";
+import { httpClient } from "@/services/axios";
 import { IProductsGetOptions } from "./types";
 
 export const fetchProductsByCategory = async (options: IProductsGetOptions) => {
