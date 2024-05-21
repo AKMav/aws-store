@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getListFromStorage } from "@/helpers";
-import { ICategoriesState, WISH_LIST_KEY, SLICE_NAME } from "./types";
+import { ICategoriesState } from "./types";
+import { WISH_LIST_KEY, SLICE_NAME } from "./constants";
 import { updateAll, addNew, removeExist } from "./actions";
 
 const initialState: ICategoriesState = {

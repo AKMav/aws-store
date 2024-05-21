@@ -6,5 +6,7 @@ export {
   cartProductQuantityChange,
   addProductToCartWithQuantity,
 } from "./slice";
-export default reducer;
 export * from "./types";
+export * from "./constants";
+
+export default reducer;
