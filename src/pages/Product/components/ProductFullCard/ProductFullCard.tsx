@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "@/routes";
-import { getProductById } from "@/services/products";
+import { getProductById } from "@/api/products";
 import { formatFetchedProductForFullCard } from "@/decorators/productFormatters";
 import { IFullProduct } from "@/types/products";
 import { DeliverySection } from "../DeliverySection/DeliverySection";

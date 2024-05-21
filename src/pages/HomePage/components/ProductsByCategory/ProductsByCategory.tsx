@@ -2,7 +2,7 @@ import { ProductsList } from "@/components";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { IProductCard } from "@/types/products";
-import { fetchProductsByCategory } from "@/services/products";
+import { fetchProductsByCategory } from "@/api/products";
 import { formatFetchedProductsForCard } from "@/decorators/productFormatters";
 import { RootState } from "@/store";
 import { AxiosDataResponse, PaginateParams } from "../../types";
