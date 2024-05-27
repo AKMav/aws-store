@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { Button, Spinner } from "react-bootstrap";
-import { fetchCategories } from "@/api/products";
+import { fetchCategories } from "@/api/categories";
 import { normalizeCategories } from "@/decorators/categoriesFormatters";
 import { RootState } from "@/store";
 import { updateAllCategories, setCurrentCategory } from "@/store/categories";
-import { CATEGORY } from "@/types/categories";
+import { CATEGORY } from "@/constants";
 import "./style.scss";
 
 export const CategoriesList = () => {
