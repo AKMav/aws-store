@@ -28,7 +28,7 @@ export const Header = () => {
         <Container className="header-body__container">
           <Row>
             <Col className="header-body__col">
-              <h1 className="header-body__title">Awesome store</h1>
+              <h1 className="header-body__title">Exclusive</h1>
               <nav className="header-body__nav">
                 <NavList />
               </nav>
