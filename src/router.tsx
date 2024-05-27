@@ -7,6 +7,7 @@ import {
   Wishlist,
   ContactUs,
   Product,
+  LogIn,
 } from "@/pages";
 import { Routes, RouteParams } from "./routes";
 import { App } from "./App";
@@ -49,18 +50,26 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: Routes.NotFound,
-        element: (
-          <Suspense>
-            <NotFound />
-          </Suspense>
-        ),
-      },
-      {
         path: Routes.Contact,
         element: (
           <Suspense>
             <ContactUs />
+          </Suspense>
+        ),
+      },
+      {
+        path: Routes.Login,
+        element: (
+          <Suspense>
+            <LogIn />
+          </Suspense>
+        ),
+      },
+      {
+        path: Routes.NotFound,
+        element: (
+          <Suspense>
+            <NotFound />
           </Suspense>
         ),
       },
