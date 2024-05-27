@@ -1,4 +1,4 @@
-import { IFetchedProduct } from "@/types/products";
+import { IFetchedProduct } from "@/api/products";
 import { AxiosResponse } from "axios";
 
 export type PaginateParams = {

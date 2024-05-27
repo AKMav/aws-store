@@ -1,4 +1,5 @@
 import { Rating } from "react-simple-star-rating";
+import { AvailabilityStatus } from "@/api/products";
 import "./style.scss";
 
 interface IProps {
@@ -7,7 +8,7 @@ interface IProps {
   rating: number;
   reviews: number;
   price: number;
-  isInStock: boolean;
+  availabilityStatus: AvailabilityStatus;
 }
 
 export const ProductDetails = ({
@@ -16,7 +17,7 @@ export const ProductDetails = ({
   reviews,
   price,
   description,
-  isInStock,
+  availabilityStatus,
 }: IProps) => {
   const formatPrice = (price: number) => parseFloat(`${price}`).toFixed(2);
 
@@ -30,10 +31,10 @@ export const ProductDetails = ({
         </div>
         <span
           className={`product-details__stock-status ${
-            isInStock ? "active" : "disabled"
+            availabilityStatus === "In Stock" ? "active" : "disabled"
           }`}
         >
-          {isInStock ? "In Stock" : "Out of stock"}
+          {availabilityStatus}
         </span>
       </div>
       <h3 className="product-details__price">${formatPrice(price)}</h3>
