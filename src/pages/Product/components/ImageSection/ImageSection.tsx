@@ -14,12 +14,12 @@ export const ImageSection = ({ mainImage, images }: IProps) => {
             key={index}
             className="full-product-images__image-container mini"
           >
-            <img src={imageSrc} alt="product mini image" />
+            <img src={imageSrc} alt="product mini image" draggable={false} />
           </div>
         ))}
       </div>
       <div className="full-product-images__image-container">
-        <img src={mainImage} alt="product main image" />
+        <img src={mainImage} alt="product main image" draggable={false} />
       </div>
     </div>
   );
