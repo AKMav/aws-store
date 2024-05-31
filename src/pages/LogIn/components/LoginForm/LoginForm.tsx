@@ -1,27 +1,48 @@
 import { FormEvent, useMemo, useState } from "react";
+import { AxiosError } from "axios";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
-import { FormToasts, useToasts } from "@/components/FormToasts";
+import { toast } from "react-toastify";
+import { authLogin, IUserAuthBody } from "@/api/auth";
 import { useForm } from "./hooks/form";
 import "./style.scss";
 
 export const LoginForm = () => {
   const { form, setPassword, setUsername } = useForm();
-  const { showToast, setShowToast, toastVariant, setToastVariant } =
-    useToasts();
 
   const [tryToSend, setTryToSend] = useState(false);
   const isFormInvalid = useMemo(() => !form.password || !form.username, [form]);
+
+  const sendAuth = async (body: IUserAuthBody) => {
+    try {
+      const response = await authLogin(body);
+      const user = response.data;
+      toast.success("Successful authorized");
+      console.log(user);
+    } catch (e) {
+      const error = e as AxiosError;
+
+      if (error.response?.status === 401) {
+        console.log("errors.unauthorized");
+      } else {
+        const data = error.response?.data as { message: string };
+        toast.error(data.message);
+      }
+    }
+  };
 
   const submitHandle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setTryToSend(true);
 
     if (isFormInvalid) {
-      setShowToast(true);
-      setToastVariant("danger");
+      toast.error("Form is invalid. Need to fill all required fields");
+    } else {
+      const body: IUserAuthBody = {
+        ...form,
+        expiresInMins: 1, // TODO remove
+      };
+      sendAuth(body);
     }
-
-    console.log(form);
   };
 
   return (
@@ -64,17 +85,12 @@ export const LoginForm = () => {
             className="login-form__button"
             variant="outline-danger"
             type="button"
+            onClick={() => toast.info("User forget password logic")}
           >
             Forget Password
           </Button>
         </div>
       </Form>
-
-      <FormToasts
-        setShowToast={setShowToast}
-        showToast={showToast}
-        toastVariant={toastVariant}
-      />
     </div>
   );
 };
