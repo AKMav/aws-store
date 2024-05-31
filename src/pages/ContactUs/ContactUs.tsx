@@ -1,20 +1,15 @@
 import { Container } from "react-bootstrap";
-import { FormToasts, useToasts } from "@/components/FormToasts";
+import { toast } from "react-toastify";
 import { ContactsInfoCard, MessageForm } from "./components";
 import "./style.scss";
 
 const ContactUs = () => {
-  const { showToast, setShowToast, toastVariant, setToastVariant } =
-    useToasts();
-
   const onSuccessFormSend = () => {
-    setToastVariant("success");
-    setShowToast(true);
+    toast.success("Form successful sended");
   };
 
   const onErrorFormValidation = () => {
-    setToastVariant("danger");
-    setShowToast(true);
+    toast.error("Form is invalid");
   };
 
   return (
@@ -26,12 +21,6 @@ const ContactUs = () => {
           onError={onErrorFormValidation}
         />
       </Container>
-
-      <FormToasts
-        setShowToast={setShowToast}
-        showToast={showToast}
-        toastVariant={toastVariant}
-      />
     </>
   );
 };
