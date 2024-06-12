@@ -19,7 +19,3 @@ export const fetchProductsByCategory = async (options: IProductsGetOptions) => {
 export const getProductById = async (id: string | number) => {
   return httpClient.get(`/products/${id}`);
 };
-
-export const fetchCategories = () => {
-  return httpClient.get("/products/categories");
-};

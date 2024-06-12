@@ -1,10 +1,11 @@
 import { ICategory } from "@/types/categories";
+import { IFetchedCategory } from "@/api/categories";
 
 export const normalizeCategories = (
-  sourceCategories: string[]
+  sourceCategories: IFetchedCategory[]
 ): ICategory[] => {
-  return sourceCategories.map((category) => ({
-    category,
-    title: (category[0].toUpperCase() + category.slice(1)).split("-").join(" "),
+  return sourceCategories.map(({ name, slug }) => ({
+    category: slug,
+    title: name,
   }));
 };

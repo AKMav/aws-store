@@ -1,5 +1,5 @@
 import { IProductCard } from "@/types/products";
-import { RoundButton } from "@/components/UIKit";
+import { RoundButton } from "@/components/shared";
 import DeleteIcon from "@/assets/icons/delete-icon.svg";
 import CartIcon from "@/assets/icons/cart.svg";
 import "./style.scss";

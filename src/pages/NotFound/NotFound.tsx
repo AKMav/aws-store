@@ -1,5 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
-import { BackHomeButton } from "@/components/UIKit";
+import { BackHomeButton } from "@/components/shared";
 import "./style.scss";
 
 const NotFound = () => {

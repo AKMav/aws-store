@@ -1,5 +1,6 @@
-import { IFetchedProduct, IProductCard, IFullProduct } from "@/types/products";
-import { getPriceWithDiscount } from "@/helpers";
+import { IProductCard, IFullProduct } from "@/types/products";
+import { IFetchedProduct } from "@/api/products";
+import { getPriceWithDiscount, getValuableDiscount } from "@/helpers";
 
 export const formatFetchedProductsForCard = (
   source: IFetchedProduct[]
@@ -15,7 +16,7 @@ const formatFetchedProductForCard = ({
   rating,
   thumbnail,
 }: IFetchedProduct): IProductCard => {
-  const valuableDiscount = discountPercentage > 15;
+  const valuableDiscount = getValuableDiscount({ price, discountPercentage });
 
   return {
     id,
@@ -37,13 +38,14 @@ export const formatFetchedProductForFullCard = ({
   title,
   price,
   discountPercentage,
+  availabilityStatus,
   rating,
   thumbnail,
   images,
   stock,
   description,
 }: IFetchedProduct): IFullProduct => {
-  const valuableDiscount = discountPercentage > 15;
+  const valuableDiscount = getValuableDiscount({ discountPercentage, price });
 
   return {
     id,
@@ -51,7 +53,8 @@ export const formatFetchedProductForFullCard = ({
     rating,
     images,
     description,
-    stock: stock > 0,
+    availabilityStatus,
+    stock,
     discountPercentage: valuableDiscount ? discountPercentage : null,
     name: title,
     mainPicture: thumbnail,

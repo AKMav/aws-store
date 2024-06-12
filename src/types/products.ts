@@ -1,16 +1,4 @@
-export interface IFetchedProduct {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
+import { AvailabilityStatus } from "@/api/products";
 
 interface IProductBase {
   id: number;
@@ -33,6 +21,7 @@ export interface ICartProduct extends IProductBase {
 
 export interface IFullProduct extends IProductCard {
   images: string[];
-  stock: boolean;
+  stock: number;
+  availabilityStatus: AvailabilityStatus;
   description: string;
 }

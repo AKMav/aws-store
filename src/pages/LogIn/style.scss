@@ -1,0 +1,16 @@
+.log-in-page {
+  padding: 40px 0;
+
+  &__wrapper {
+    padding: 0 16px;
+    border-radius: 4px;
+    min-height: 700px;
+    background-color: var(--login-bg);
+    background-image: url("@/assets/images/log_in_bg.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ICategoriesState, BUYER_CART_KEY, SLICE_NAME } from "./types";
+import { ICategoriesState } from "./types";
+import { BUYER_CART_KEY, SLICE_NAME } from "./constants";
 import { getListFromStorage } from "@/helpers";
 import {
   updateAll,

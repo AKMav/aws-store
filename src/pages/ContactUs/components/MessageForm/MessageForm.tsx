@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
-import { FormCard } from "@/components/UIKit";
+import { FormCard } from "@/components/shared";
 import { Button, Form } from "react-bootstrap";
 import "./style.scss";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Fade } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
-import { RoundButton } from "@/components/UIKit";
+import { RoundButton } from "@/components/shared";
 import EyeIcon from "@/assets/icons/eye.svg";
 import HeartIcon from "@/assets/icons/heart.svg";
 import { IProductCard } from "@/types/products";

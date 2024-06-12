@@ -2,6 +2,7 @@ import { ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import { ICartProduct } from "@/types/products";
 import CrossIcon from "@/assets/icons/cross.svg";
+import { getFixedPrice } from "@/decorators/priceFormatters";
 import { ProductNameCell } from "../ProductNameCell/ProductNameCell";
 import {
   removeProductFromCart,
@@ -74,7 +75,7 @@ export const ProductsTable = ({ products }: IProps) => {
               <td className="cart-products-table__cell cart-products-table__cell_body">
                 <div className="flex-cell">
                   <span className="cell-text">
-                    ${(priceWithDiscount || price) * quantity}
+                    ${getFixedPrice((priceWithDiscount || price) * quantity, 2)}
                   </span>
                   <button
                     type="button"

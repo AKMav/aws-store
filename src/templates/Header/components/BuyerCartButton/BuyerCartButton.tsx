@@ -3,7 +3,7 @@ import { Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "@/store";
-import { RoundButton } from "@/components/UIKit";
+import { RoundButton } from "@/components/shared";
 import { Routes } from "@/routes";
 import CartLogo from "@/assets/icons/cart.svg";
 import "./style.scss";

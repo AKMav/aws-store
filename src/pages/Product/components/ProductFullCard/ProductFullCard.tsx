@@ -98,12 +98,12 @@ export const ProductFullCard = ({ id }: IProps) => {
                 title={product?.name}
                 rating={product.rating}
                 reviews={product.commentsCount || 0}
-                isInStock={product.stock}
+                availabilityStatus={product.availabilityStatus}
                 price={product.priceWithDiscount || product.price}
                 description={product.description}
               />
               <ProductActions
-                inStock={product.stock}
+                inStock={product.stock !== 0}
                 inWishlist={isProductInWishlist(id)}
                 toggleWishlist={toggleWishlist}
                 onBuyNow={onBuyNow}

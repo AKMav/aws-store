@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_ENDPOINT: string;
+  readonly VITE_TITLE: string;
 }
 
 interface ImportMeta {

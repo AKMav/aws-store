@@ -1,4 +1,4 @@
-import { BackHomeButton } from "@/components/UIKit";
+import { BackHomeButton } from "@/components/shared";
 import "./style.scss";
 
 interface IProps {
