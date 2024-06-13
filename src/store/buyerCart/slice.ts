@@ -27,7 +27,6 @@ const categoriesSlice = createSlice({
 export default categoriesSlice.reducer;
 
 export const {
-  updateAll: updateCartList,
   addProductWithQuantity: addProductToCartWithQuantity,
   removeProduct: removeProductFromCart,
   changeQuantity: cartProductQuantityChange,

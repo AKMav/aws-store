@@ -2,6 +2,7 @@ import { IUser } from "@/types/user";
 
 export interface IAuthUser extends IUser {
   token: string;
+  refreshToken: string;
 }
 
 export interface IAuthExpiresMin {
