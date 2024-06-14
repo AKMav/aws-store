@@ -44,7 +44,7 @@ export const LoginForm = ({ onSaveUser }: IProps) => {
     } else {
       const body: IUserAuthBody = {
         ...form,
-        expiresInMins: 30,
+        // expiresInMins: 1, //! field is not work
       };
       sendAuth(body);
     }

@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { updateCurrentUser } from "@/store/profile";
 import { IAuthUser } from "@/api/auth";
+import { setMultipleCookies } from "@/helpers";
 
 export const useSaveUser = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,10 @@ export const useSaveUser = () => {
     token: string;
     refreshToken: string;
   }) => {
-    console.log({ token, refreshToken });
+    setMultipleCookies([
+      { key: "token", value: token },
+      { key: "refreshToken", value: refreshToken },
+    ]);
   };
 
   const onSuccessfullyAuthorized = (user: IAuthUser) => {
