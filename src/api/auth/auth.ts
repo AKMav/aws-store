@@ -1,10 +1,11 @@
 import { httpClient } from "@/services/axios";
-import { IAuthUser, IUserAuthBody, IAuthExpiresMin } from "./types";
+import { IFetchedUser, IUserAuthBody, IRefreshTokenPayload } from "./types";
+import { ITokens } from "@/types/tokens";
 
 export const authLogin = (payload: IUserAuthBody) => {
-  return httpClient.post<IAuthUser>("/auth/login", payload);
+  return httpClient.post<IFetchedUser>("/auth/login", payload);
 };
 
-export const authRefresh = (payload: IAuthExpiresMin) => {
-  return httpClient.post<IAuthUser>("/auth/refresh", payload);
+export const authRefresh = (payload: IRefreshTokenPayload) => {
+  return httpClient.post<ITokens>("/auth/refresh", payload);
 };

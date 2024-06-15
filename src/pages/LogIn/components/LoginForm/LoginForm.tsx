@@ -2,7 +2,7 @@ import { FormEvent, useMemo, useState } from "react";
 import { AxiosError } from "axios";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { authLogin, IUserAuthBody, IAuthUser } from "@/api/auth";
+import { authLogin, IUserAuthBody, IFetchedUser } from "@/api/auth";
 import { useForm } from "./hooks/form";
 import { IProps } from "./types";
 import "./style.scss";
@@ -50,7 +50,7 @@ export const LoginForm = ({ onSaveUser }: IProps) => {
     }
   };
 
-  const successfulAuthorizeHandle = (user: IAuthUser) => {
+  const successfulAuthorizeHandle = (user: IFetchedUser) => {
     onSaveUser(user);
     clearForm();
     setTryToSend(false);

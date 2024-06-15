@@ -1,12 +1,14 @@
 import { IUser } from "@/types/user";
+import { ITokens } from "@/types/tokens";
 
-export interface IAuthUser extends IUser {
-  token: string;
-  refreshToken: string;
-}
+export interface IFetchedUser extends IUser, ITokens {}
 
 export interface IAuthExpiresMin {
   expiresInMins?: number;
+}
+
+export interface IRefreshTokenPayload extends IAuthExpiresMin {
+  refreshToken: string;
 }
 
 export interface IUserAuthBody extends IAuthExpiresMin {

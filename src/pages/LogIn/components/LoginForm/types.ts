@@ -1,4 +1,4 @@
-import { IAuthUser } from "@/api/auth";
+import { IFetchedUser } from "@/api/auth";
 
 export interface IForm {
   username: string;
@@ -6,5 +6,5 @@ export interface IForm {
 }
 
 export interface IProps {
-  onSaveUser: (user: IAuthUser) => void;
+  onSaveUser: (user: IFetchedUser) => void;
 }

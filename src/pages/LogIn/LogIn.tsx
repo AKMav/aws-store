@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { LoginForm } from "./components/LoginForm/LoginForm";
-import { useSaveUser } from "./hooks/useSaveUser";
+import { useSaveUser } from "@/hooks";
 import "./style.scss";
 
 const LogIn = () => {
