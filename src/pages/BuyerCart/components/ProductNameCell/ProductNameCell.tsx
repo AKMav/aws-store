@@ -13,6 +13,8 @@ export const ProductNameCell = ({ pictureSrc, productName }: IProps) => {
         src={pictureSrc}
         alt={productName}
         draggable="false"
+        width={64}
+        height={64}
       />
       <span className="product-name-cell__text">{productName}</span>
     </div>
