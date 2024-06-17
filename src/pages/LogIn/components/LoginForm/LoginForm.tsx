@@ -23,13 +23,8 @@ export const LoginForm = ({ onSaveUser }: IProps) => {
       successfulAuthorizeHandle(user);
     } catch (e) {
       const error = e as AxiosError;
-
-      if (error.response?.status === 401) {
-        console.log("errors.unauthorized");
-      } else {
-        const data = error.response?.data as { message: string };
-        toast.error(data.message);
-      }
+      const data = error.response?.data as { message: string };
+      toast.error(data.message);
     } finally {
       setLoading(false);
     }
@@ -44,7 +39,7 @@ export const LoginForm = ({ onSaveUser }: IProps) => {
     } else {
       const body: IUserAuthBody = {
         ...form,
-        // expiresInMins: 1, //! field is not work
+        expiresInMins: 1, // TODO для того чтобы проверить обновление через refreshToken
       };
       sendAuth(body);
     }

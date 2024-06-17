@@ -32,7 +32,10 @@ httpClient.interceptors.response.use(
   async function (error: AxiosError) {
     const originalRequest = error.config || {};
 
-    if (error.response?.status === 403) {
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      error.response?.status === 401 && console.log("401 Unauthorized");
+      error.response?.status === 403 && console.log("403 Forbidden");
+
       const { refreshToken } = getCookies() as unknown as ITokens;
 
       if (refreshToken) {
