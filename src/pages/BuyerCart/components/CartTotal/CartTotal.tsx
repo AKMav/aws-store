@@ -3,12 +3,16 @@ import { getFixedPrice } from "@/decorators/priceFormatters";
 import "./style.scss";
 
 interface IProps {
+  proceedToCheckout: () => void;
   productsTotalPrice: number;
 }
 
 const deliveryPrice = Math.round(Math.random() * 100);
 
-export const CartTotal = ({ productsTotalPrice }: IProps) => {
+export const CartTotal = ({
+  productsTotalPrice,
+  proceedToCheckout,
+}: IProps) => {
   return (
     <div className="cart-total">
       <h2 className="cart-total__title">Cart Total</h2>
@@ -24,7 +28,11 @@ export const CartTotal = ({ productsTotalPrice }: IProps) => {
         <span>Total:</span>
         <span>${getFixedPrice(productsTotalPrice + deliveryPrice, 2)}</span>
       </div>
-      <Button variant="danger" className="cart-total__button">
+      <Button
+        variant="danger"
+        className="cart-total__button"
+        onClick={proceedToCheckout}
+      >
         Proceed to checkout
       </Button>
     </div>

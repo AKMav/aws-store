@@ -9,6 +9,7 @@ export enum Routes {
   Login = "login",
   Products = "products",
   Profile = "profile",
+  Checkout = "checkout",
   NotFound = "*",
 }
 
