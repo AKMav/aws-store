@@ -60,7 +60,7 @@ export const Header = () => {
             <Col className="header-body__col">
               <h1 className="header-body__title">Exclusive</h1>
               <nav className="header-body__nav">
-                <NavList />
+                <NavList isAuthorized={!!user} />
               </nav>
               <div className="header-body__actions-block">
                 <WishlistButton
