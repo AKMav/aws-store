@@ -8,6 +8,7 @@ export enum Routes {
   About = "about",
   Login = "login",
   Products = "products",
+  Profile = "profile",
   NotFound = "*",
 }
 
