@@ -1,7 +1,6 @@
 import reducer from "./slice";
 
 export {
-  updateCartList,
   removeProductFromCart,
   cartProductQuantityChange,
   addProductToCartWithQuantity,

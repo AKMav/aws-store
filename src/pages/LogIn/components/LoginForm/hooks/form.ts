@@ -1,30 +1,35 @@
 import { ChangeEvent, useState } from "react";
 import { IForm } from "../types";
 
+const formInit = {
+  username: "",
+  password: "",
+};
+
 export const useForm = () => {
-  const [form, setForm] = useState<IForm>({
-    username: "",
-    password: "",
-  });
+  const [form, setForm] = useState<IForm>(formInit);
 
-  const setPassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({
-      ...prev,
-      password: e.target.value,
-    }));
-  };
-
-  const setUsername = (e: ChangeEvent<HTMLInputElement>) => {
+  const onInputUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({
       ...prev,
       username: e.target.value,
     }));
   };
 
+  const onInputPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setForm((prev) => ({
+      ...prev,
+      password: e.target.value,
+    }));
+  };
+
+  const clearForm = () => setForm(formInit);
+
   return {
     form,
     setForm,
-    setUsername,
-    setPassword,
+    onInputUsernameChange,
+    onInputPasswordChange,
+    clearForm,
   };
 };

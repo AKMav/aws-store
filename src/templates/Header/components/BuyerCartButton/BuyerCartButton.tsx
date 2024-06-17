@@ -1,23 +1,14 @@
-import { useMemo } from "react";
 import { Badge } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { RootState } from "@/store";
 import { RoundButton } from "@/components/shared";
-import { Routes } from "@/routes";
 import CartLogo from "@/assets/icons/cart.svg";
 import "./style.scss";
 
-export const BuyerCartButton = () => {
-  const navigate = useNavigate();
+interface IProps {
+  itemsCount: number;
+  openCart: () => void;
+}
 
-  const openCart = () => {
-    navigate(Routes.Cart);
-  };
-
-  const buyerCartList = useSelector((state: RootState) => state.buyerCart.list);
-  const cartListCount = useMemo(() => buyerCartList.length, [buyerCartList]);
-
+export const BuyerCartButton = ({ itemsCount, openCart }: IProps) => {
   return (
     <RoundButton clickHandle={openCart} className="buyer-cart-button">
       <img
@@ -26,9 +17,9 @@ export const BuyerCartButton = () => {
         draggable="false"
         className="buyer-cart-button__image"
       />
-      {!!cartListCount && (
+      {!!itemsCount && (
         <Badge pill bg="danger" className="buyer-cart-button__label">
-          {cartListCount}
+          {itemsCount}
         </Badge>
       )}
     </RoundButton>

@@ -1,23 +1,14 @@
-import { useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import { Badge } from "react-bootstrap";
 import { RoundButton } from "@/components/shared";
 import WishlistLogo from "@/assets/icons/wishlist.svg";
-import { Routes } from "@/routes";
 import "./style.scss";
-import { Badge } from "react-bootstrap";
 
-export const WishlistButton = () => {
-  const navigate = useNavigate();
+interface IProps {
+  itemsCount: number;
+  openWishlist: () => void;
+}
 
-  const openWishlist = () => {
-    navigate(Routes.Wishlist);
-  };
-
-  const wishlist = useSelector((state: RootState) => state.wishlist.list);
-  const wishlistCount = useMemo(() => wishlist.length, [wishlist]);
-
+export const WishlistButton = ({ itemsCount, openWishlist }: IProps) => {
   return (
     <RoundButton className="wishlist-button" clickHandle={openWishlist}>
       <img
@@ -26,9 +17,9 @@ export const WishlistButton = () => {
         draggable="false"
         className="wishlist-button__image"
       />
-      {!!wishlistCount && (
+      {!!itemsCount && (
         <Badge pill bg="danger" className="wishlist-button__label">
-          {wishlistCount}
+          {itemsCount}
         </Badge>
       )}
     </RoundButton>
