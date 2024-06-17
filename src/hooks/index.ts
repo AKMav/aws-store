@@ -1,5 +1,5 @@
 export * from "./useCacheToStorage";
 export * from "./useWishlistActions";
 export * from "./useCartActions";
-export * from "./useSuccessfulAuth";
+export * from "./useLogin";
 export * from "./useFetchUserByToken";
