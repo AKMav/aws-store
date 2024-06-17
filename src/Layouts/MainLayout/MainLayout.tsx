@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Header, Footer } from "@/templates";
-import { useCacheCart, useCacheWishlist } from "@/hooks";
+import { useCacheCart, useCacheWishlist, useFetchUserByToken } from "@/hooks";
 import "./style.scss";
 
 export const MainLayout = () => {
   useCacheCart();
   useCacheWishlist();
+  useFetchUserByToken();
 
   return (
     <>

@@ -9,3 +9,7 @@ export const authLogin = (payload: IUserAuthBody) => {
 export const authRefresh = (payload: IRefreshTokenPayload) => {
   return httpClient.post<ITokens>("/auth/refresh", payload);
 };
+
+export const fetchCurrentUser = <T extends IFetchedUser>() => {
+  return httpClient.get<T>("/auth/me");
+};

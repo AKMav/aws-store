@@ -1,6 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { getCookies } from "@/helpers";
-import { useSaveUser } from "@/hooks";
+import { getCookies, saveTokens } from "@/helpers";
 import { authRefresh } from "@/api/auth";
 import { ITokens } from "@/types/tokens";
 
@@ -32,14 +31,16 @@ httpClient.interceptors.response.use(
   },
   async function (error: AxiosError) {
     const originalRequest = error.config || {};
+
     if (error.response?.status === 403) {
       const { refreshToken } = getCookies() as unknown as ITokens;
-      const { saveTokens } = useSaveUser();
-      const response = await authRefresh({ refreshToken });
-      const data = response.data;
-      axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
-      saveTokens(data);
-      return httpClient(originalRequest);
+
+      if (refreshToken) {
+        const { data } = await authRefresh({ refreshToken });
+        axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+        saveTokens(data);
+        return httpClient(originalRequest);
+      }
     }
     return Promise.reject(error);
   }

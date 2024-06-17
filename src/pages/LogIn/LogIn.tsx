@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { LoginForm } from "./components/LoginForm/LoginForm";
-import { useSaveUser } from "@/hooks";
+import { useSuccessfulAuth } from "@/hooks";
 import "./style.scss";
 
 const LogIn = () => {
-  const { onSuccessfullyAuthorized } = useSaveUser();
+  const { saveFetchedUser } = useSuccessfulAuth();
 
   useEffect(() => {
     toast.warn("Username - emilys, Password - emilyspass", {
@@ -17,7 +17,7 @@ const LogIn = () => {
   return (
     <Container className="log-in-page">
       <div className="log-in-page__wrapper">
-        <LoginForm onSaveUser={onSuccessfullyAuthorized} />
+        <LoginForm onSaveUser={saveFetchedUser} />
       </div>
     </Container>
   );
