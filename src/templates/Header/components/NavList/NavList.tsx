@@ -7,7 +7,7 @@ export const NavList = () => {
     { path: Routes.Home, title: "Home" },
     { path: Routes.Contact, title: "Contact" },
     { path: Routes.About, title: "About" },
-    { path: Routes.Login, title: "Sign up" },
+    { path: Routes.Login, title: "Sign in" },
   ];
 
   return (
