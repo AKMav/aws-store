@@ -1,13 +1,20 @@
 import "./style.scss";
 
 interface IProps {
-  userName: string;
+  firstName?: string;
+  lastName?: string;
 }
 
-export const WelcomeTitle = ({ userName }: IProps) => {
+export const WelcomeTitle = ({ firstName, lastName }: IProps) => {
   return (
-    <p className="welcome-title">
-      Welcome <span className="welcome-title__username">{userName}</span>
-    </p>
+    <div className="welcome-title">
+      <span>Welcome!</span>
+      {firstName && (
+        <span className="welcome-title__username"> {firstName.trim()} </span>
+      )}
+      {lastName && (
+        <span className="welcome-title__username">{lastName.trim()}</span>
+      )}
+    </div>
   );
 };
