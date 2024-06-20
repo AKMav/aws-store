@@ -18,8 +18,8 @@ export const useFetchUserByToken = () => {
         lastName: data.lastName,
         gender: data.gender,
         image: data.image,
+        address: data.address,
       };
-
       dispatch(updateCurrentUser(user));
     } catch (error) {
       console.error(error);
