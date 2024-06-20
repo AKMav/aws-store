@@ -6,3 +6,4 @@ export { ContactUs } from "./ContactUs";
 export { Product } from "./Product";
 export { LogIn } from "./LogIn";
 export { Profile } from "./Profile";
+export { ProceedCheckout } from "./ProceedCheckout";

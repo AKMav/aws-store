@@ -22,7 +22,7 @@ const BuyerCart = () => {
     if (!user) {
       toast.error("You need to sign in to continue proceed to checkout");
     } else {
-      navigate(Routes.Checkout);
+      navigate(Routes.ProceedCheckout);
     }
   };
 
