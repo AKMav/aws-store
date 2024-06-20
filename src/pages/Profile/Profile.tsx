@@ -1,14 +1,11 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { WelcomeTitle } from "./components";
 import "./style.scss";
 
 const Profile = () => {
   return (
     <Container className="profile-page">
-      <Row className="profile-page__row">
-        <Col>
-          <h1 className="profile-page__title">Profile page</h1>
-        </Col>
-      </Row>
+      <WelcomeTitle userName="Mr. Akmal" />
     </Container>
   );
 };
