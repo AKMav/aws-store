@@ -8,7 +8,7 @@ export const useHandleClick = (isAuthorized: boolean) => {
   return (event: MouseEvent<HTMLAnchorElement>) => {
     const target = event.target as HTMLAnchorElement;
     const href = target.getAttribute("href");
-    if (isAuthorized && href === `/${Routes.Login}`) {
+    if (isAuthorized && href === `${Routes.Login}`) {
       event.preventDefault();
       navigate(Routes.Home);
     }
