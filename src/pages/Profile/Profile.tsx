@@ -9,8 +9,8 @@ const Profile = () => {
 
   return (
     <Container className="profile-page">
-      <ProfileFullInfo user={user} />
       <WelcomeTitle firstName={user?.firstName} lastName={user?.lastName} />
+      <ProfileFullInfo user={user} />
     </Container>
   );
 };

@@ -13,6 +13,7 @@ export const useFetchUserByToken = () => {
       const user: IUser = {
         id: data.id,
         username: data.username,
+        password: data.password,
         email: data.email,
         firstName: data.firstName,
         lastName: data.lastName,
