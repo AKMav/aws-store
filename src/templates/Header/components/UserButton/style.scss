@@ -8,7 +8,11 @@
   background-color: transparent;
 
   &:hover {
-    background-color: var(--secondary-1);
+    background-color: var(--secondary-3);
+
+    img {
+      filter: invert(1);
+    }
   }
 
   &:active {

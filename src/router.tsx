@@ -8,6 +8,8 @@ import {
   ContactUs,
   Product,
   LogIn,
+  Profile,
+  ProceedCheckout,
 } from "@/pages";
 import { Routes, RouteParams } from "./routes";
 import { App } from "./App";
@@ -62,6 +64,22 @@ export const router = createBrowserRouter([
         element: (
           <Suspense>
             <LogIn />
+          </Suspense>
+        ),
+      },
+      {
+        path: Routes.Profile,
+        element: (
+          <Suspense>
+            <Profile />
+          </Suspense>
+        ),
+      },
+      {
+        path: Routes.ProceedCheckout,
+        element: (
+          <Suspense>
+            <ProceedCheckout />
           </Suspense>
         ),
       },
