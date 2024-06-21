@@ -1,6 +1,5 @@
 .full-product-images {
   display: flex;
-  justify-content: space-evenly;
   gap: 16px;
 
   &__row {
@@ -17,10 +16,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     &.mini {
       height: 140px;
+      width: 140px;
+      padding: 4px;
+
+      &:hover img {
+        transform: scale(1.1);
+      }
     }
+  }
+
+  &_main {
+    flex: 1 0 auto;
+    max-width: 80%;
   }
 
   img {

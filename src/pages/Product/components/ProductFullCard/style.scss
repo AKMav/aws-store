@@ -3,10 +3,18 @@
     display: flex;
     align-items: center;
     gap: 70px;
+
+    @media screen and (min-width: 992px) {
+      justify-content: center;
+    }
   }
 
   &__col {
     padding: 0;
+
+    @media screen and (max-width: 992px) {
+      flex: 1 0 auto;
+    }
   }
 
   &__spinner-wrapper {
