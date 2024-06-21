@@ -4,7 +4,7 @@ import { fetchCurrentUser } from "@/api/auth";
 import { updateCurrentUser } from "@/store/profile";
 import { IUser } from "@/types/user";
 
-export const useFetchUserByToken = () => {
+export const useGetFullUser = () => {
   const dispatch = useDispatch();
 
   const getUserByToken = async () => {
