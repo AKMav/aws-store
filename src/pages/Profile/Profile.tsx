@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import { WelcomeTitle } from "./components";
+import { WelcomeTitle, ProfileFullInfo } from "./components";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import "./style.scss";
@@ -9,6 +9,7 @@ const Profile = () => {
 
   return (
     <Container className="profile-page">
+      <ProfileFullInfo user={user} />
       <WelcomeTitle firstName={user?.firstName} lastName={user?.lastName} />
     </Container>
   );
