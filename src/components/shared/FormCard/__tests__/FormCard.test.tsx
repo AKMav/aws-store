@@ -1,11 +1,11 @@
 import { render } from "@testing-library/react";
 import { FormCard } from "../FormCard";
-import { TEXT, ROLE_LINK, TEST_CLASS } from "./constants";
+import { TEXT, TEXT_REGULAR, ROLE_LINK, TEST_CLASS } from "./constants";
 
 describe("FormCard testing", () => {
   it("renders the FormCard component with a text as a child", () => {
     const { getByText } = render(<FormCard>{TEXT}</FormCard>);
-    const form = getByText(TEXT);
+    const form = getByText(TEXT_REGULAR);
     expect(form).toBeInTheDocument();
   });
 
