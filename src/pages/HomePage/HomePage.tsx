@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { BenefitsList } from "@/components";
 import { MainHeader } from "./components/MainHeader/MainHeader";
 import { ProductsByCategory } from "./components/ProductsByCategory/ProductsByCategory";
+import { benefits } from "./constants";
 
 export const HomePage = () => {
   return (
@@ -10,7 +11,7 @@ export const HomePage = () => {
       <Container>
         <MainHeader />
         <ProductsByCategory />
-        <BenefitsList />
+        <BenefitsList benefits={benefits} />
       </Container>
     </div>
   );
