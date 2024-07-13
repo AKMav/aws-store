@@ -1,4 +1,5 @@
 import { BackHomeButton } from "@/components/shared";
+import { TestId } from "./constants";
 import "./style.scss";
 
 interface IProps {
@@ -8,7 +9,10 @@ interface IProps {
 
 export const EmptyList = ({ imageSrc, className }: IProps) => {
   return (
-    <div className={className ? `empty-list ${className}` : "empty-list"}>
+    <div
+      data-testid={TestId}
+      className={className ? `empty-list ${className}` : "empty-list"}
+    >
       <img
         src={imageSrc}
         draggable="false"
