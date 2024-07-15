@@ -13,5 +13,7 @@ export const getValuableDiscount = ({
 };
 
 export const getPriceWithDiscount = (price: number, discount?: number) => {
-  return discount ? Math.round(price - (price * discount) / 100) : price;
+  return discount && discount > 0 && discount < 100
+    ? Math.round(price - (price * discount) / 100)
+    : price;
 };
