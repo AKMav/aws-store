@@ -1,5 +1,3 @@
-import { ITokens } from "@/types/tokens";
-
 interface IValueForCookie {
   [key: string]: string;
 }
@@ -20,11 +18,4 @@ export const setCookie = ({ key, value }: IValueForCookie) => {
 
 export const setMultipleCookies = (payload: IValueForCookie[]) => {
   payload.forEach((obj) => setCookie(obj));
-};
-
-export const saveTokens = ({ token, refreshToken }: ITokens) => {
-  setMultipleCookies([
-    { key: "token", value: token },
-    { key: "refreshToken", value: refreshToken },
-  ]);
 };
