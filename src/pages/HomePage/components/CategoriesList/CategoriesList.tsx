@@ -8,6 +8,7 @@ import { RootState } from "@/store";
 import { updateAllCategories, setCurrentCategory } from "@/store/categories";
 import { CATEGORY } from "@/constants";
 import "./style.scss";
+import { CategoryListTestId, LoaderTestId } from "./__test__/constants";
 
 export const CategoriesList = () => {
   const dispatch = useDispatch();
@@ -64,9 +65,13 @@ export const CategoriesList = () => {
   return (
     <div className="categories-list__wrapper">
       {loading ? (
-        <Spinner animation="grow" variant="secondary" />
+        <Spinner
+          animation="grow"
+          variant="secondary"
+          data-testid={LoaderTestId}
+        />
       ) : (
-        <ul className="categories-list">
+        <ul className="categories-list" data-testid={CategoryListTestId}>
           {categories.map(({ title, category }) => (
             <li key={category} className="categories-list__item">
               <Button
