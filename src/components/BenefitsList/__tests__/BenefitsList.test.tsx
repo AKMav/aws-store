@@ -1,7 +1,7 @@
+import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import { BenefitsList } from "../BenefitsList";
-import { benefit } from "./constants";
-import { TestId } from "../constants";
+import { benefit, TestId } from "./constants";
 
 describe("BenefitsList testing", () => {
   it("testing to show list with 1 element", () => {

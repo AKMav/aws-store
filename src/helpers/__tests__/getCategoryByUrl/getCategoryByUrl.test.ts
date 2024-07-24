@@ -1,4 +1,4 @@
-import { afterEach } from "vitest";
+import { afterEach, describe, it, expect } from "vitest";
 import { getCategoryByUrl } from "../../getCategoryByUrl";
 import { QUERY_NAME, QUERY_VALUE } from "./constants";
 

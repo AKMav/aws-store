@@ -1,5 +1,7 @@
 import { IBenefitInfo } from "../types";
 
+export const TestId = "benefits-list";
+
 export const benefit: IBenefitInfo = {
   id: "delivery",
   title: "FREE AND FAST DELIVERY",

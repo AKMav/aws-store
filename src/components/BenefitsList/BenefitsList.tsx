@@ -1,7 +1,7 @@
 import "./style.scss";
 import { BenefitCard } from "../shared";
 import { IProps } from "./types";
-import { TestId } from "./constants";
+import { TestId } from "./__tests__/constants";
 
 export const BenefitsList = ({ benefits }: IProps) => {
   return (

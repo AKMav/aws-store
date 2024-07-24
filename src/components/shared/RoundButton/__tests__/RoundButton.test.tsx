@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import { NAME, NAME_REGULAR, ROLE_BUTTON, ROLE_LINK } from "./constants";
 import { RoundButton } from "../RoundButton";

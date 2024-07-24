@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
 import { BrowserRouter } from "react-router-dom";
+import { render } from "@testing-library/react";
 import { BackHomeButton } from "../BackHomeButton";
 import { BUTTON_TITLE } from "./constants";
 
