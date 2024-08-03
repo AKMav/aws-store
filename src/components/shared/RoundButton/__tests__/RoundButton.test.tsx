@@ -1,7 +1,9 @@
-import { describe, it, expect } from "vitest";
-import { render } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { render, fireEvent } from "@testing-library/react";
 import { NAME, NAME_REGULAR, ROLE_BUTTON, ROLE_LINK } from "./constants";
 import { RoundButton } from "../RoundButton";
+
+const mockedClickHandle = vi.fn();
 
 describe("RoundButton testing", () => {
   it("renders the RoundButton component empty", () => {
@@ -28,5 +30,14 @@ describe("RoundButton testing", () => {
     const { getByRole } = render(<RoundButton>{CHILD}</RoundButton>);
     const link = getByRole(ROLE_LINK);
     expect(link).toBeInTheDocument();
+  });
+
+  it("обработка клика по кнопке и вызов переданного обработчика клика", () => {
+    const { getByRole } = render(
+      <RoundButton clickHandle={mockedClickHandle} />
+    );
+    const button = getByRole(ROLE_BUTTON);
+    fireEvent.click(button);
+    expect(mockedClickHandle).toBeCalled();
   });
 });
