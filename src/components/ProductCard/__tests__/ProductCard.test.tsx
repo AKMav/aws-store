@@ -238,3 +238,24 @@ describe("ProductCard: проверка отображения количест�
     expect(commentSpan?.textContent).toEqual("(10)");
   });
 });
+
+describe("ProductCard: проверка отображения рейтинга товара", () => {
+  const TEST_RATING_TITLE = `${TEST_PRODUCT.rating} out of 5`; // title get by library
+
+  it(`в карточке отображается с атрибутом title=${TEST_RATING_TITLE} на основе рейтинга товара`, () => {
+    const { queryByTitle } = render(
+      <ProductCard
+        product={TEST_PRODUCT}
+        isProductInCart={false}
+        onAddToCart={() => {}}
+        onRemoveFromCart={() => {}}
+        onAddToWishlist={() => {}}
+        onRemoveFromWishlist={() => {}}
+        onOpenProduct={() => {}}
+      />
+    );
+
+    const ratingSpan = queryByTitle(TEST_RATING_TITLE);
+    expect(ratingSpan).toBeInTheDocument();
+  });
+});
