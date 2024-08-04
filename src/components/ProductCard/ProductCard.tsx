@@ -6,7 +6,11 @@ import EyeIcon from "@/assets/icons/eye.svg";
 import HeartIcon from "@/assets/icons/heart.svg";
 import { IProductCard } from "@/types/products";
 import "./style.scss";
-import { TEST_ID_CARD_MAIN, TEST_ID_ADD_BTN } from "./__tests__/constants";
+import {
+  TEST_ID_CARD_MAIN,
+  TEST_ID_ADD_BTN,
+  TEST_ID_COMMENTS,
+} from "./__tests__/constants";
 
 interface IProps {
   product: IProductCard;
@@ -78,7 +82,7 @@ export const ProductCard = ({
         className="product-card__main"
         onMouseEnter={mouseEnter}
         onMouseLeave={mouseLeave}
-        data-testId={TEST_ID_CARD_MAIN}
+        data-testid={TEST_ID_CARD_MAIN}
       >
         {isNew && (
           <span className="product-card__tag product-card__tag_new">NEW</span>
@@ -114,7 +118,7 @@ export const ProductCard = ({
             className={`product-card__cart-button${
               isProductInCart ? " product-card__cart-button_remove" : ""
             }`}
-            data-testId={TEST_ID_ADD_BTN}
+            data-testid={TEST_ID_ADD_BTN}
             onClick={() => buyerCartActionToggle(product)}
           >
             {isProductInCart ? "Remove From Cart" : "Add To Cart"}
@@ -135,7 +139,12 @@ export const ProductCard = ({
           )}
           <Rating readonly allowFraction initialValue={rating} size={18} />
           {commentsCount && (
-            <span className="product-card__comments-count">{`(${commentsCount})`}</span>
+            <span
+              className="product-card__comments-count"
+              data-testid={TEST_ID_COMMENTS}
+            >
+              {`(${commentsCount})`}
+            </span>
           )}
         </div>
       </div>

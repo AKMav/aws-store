@@ -2,7 +2,18 @@ import { describe, it, expect } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
 import { IProductCard } from "@/types/products";
 import { ProductCard } from "../ProductCard";
-import { TEST_ID_ADD_BTN, TEST_ID_CARD_MAIN, TEST_PRODUCT } from "./constants";
+import {
+  TEST_ID_ADD_BTN,
+  TEST_ID_CARD_MAIN,
+  TEST_ID_COMMENTS,
+  TEST_PRODUCT,
+  TEST_REMOVE_FROM_CART_TEXT,
+  TEST_ADD_TO_CART_TEXT,
+  TEST_PRICE_WITH_DISCOUNT,
+  TEST_PRICE_WITH_DISCOUNT_TEXT,
+  TEST_REMOVE_BTN_CLASS,
+  TEST_OLD_PRICE_CLASS,
+} from "./constants";
 
 describe("ProductCard: проверка компонента на наличие флага isNew", () => {
   it("карточка продукта имеет лэйбл 'NEW'", () => {
@@ -104,5 +115,126 @@ describe("ProductCard: проверка кнопки добавления/уда
     expect(addRemoveBtn?.classList.contains(SHOW_CLASS)).toBeTruthy();
     fireEvent.mouseLeave(cardMain);
     expect(addRemoveBtn?.classList.contains(SHOW_CLASS)).not.toBeTruthy();
+  });
+});
+
+describe("ProductCard: проверка кнопки добавления/удаления из корзины в зависимости от входного параметра 'isProductInCart'", () => {
+  it(`пропс isProductInCart имеет ложное значение, кнопка будет иметь текст '${TEST_ADD_TO_CART_TEXT}'`, () => {
+    const { getByText } = render(
+      <ProductCard
+        product={TEST_PRODUCT}
+        isProductInCart={false}
+        onAddToCart={() => {}}
+        onRemoveFromCart={() => {}}
+        onAddToWishlist={() => {}}
+        onRemoveFromWishlist={() => {}}
+        onOpenProduct={() => {}}
+      />
+    );
+
+    const button = getByText(TEST_ADD_TO_CART_TEXT);
+    expect(button).toBeInTheDocument();
+  });
+
+  it(`пропс isProductInCart имеет истинное значение, кнопка будет иметь текст '${TEST_REMOVE_FROM_CART_TEXT}' и класс '${TEST_REMOVE_BTN_CLASS}'`, () => {
+    const { getByText } = render(
+      <ProductCard
+        isProductInCart
+        product={TEST_PRODUCT}
+        onAddToCart={() => {}}
+        onRemoveFromCart={() => {}}
+        onAddToWishlist={() => {}}
+        onRemoveFromWishlist={() => {}}
+        onOpenProduct={() => {}}
+      />
+    );
+
+    const button = getByText(TEST_REMOVE_FROM_CART_TEXT);
+    expect(button).toBeInTheDocument();
+    expect(button.classList.contains(TEST_REMOVE_BTN_CLASS)).toBeTruthy();
+  });
+});
+
+describe("ProductCard: проверка отображения цены в карточке", () => {
+  it(`priceWithDiscount = ${TEST_PRICE_WITH_DISCOUNT}, цена без скидки ${TEST_PRODUCT.price} имеет класс-'${TEST_OLD_PRICE_CLASS}`, () => {
+    const { getByText } = render(
+      <ProductCard
+        product={{
+          ...TEST_PRODUCT,
+          priceWithDiscount: TEST_PRICE_WITH_DISCOUNT,
+        }}
+        isProductInCart={false}
+        onAddToCart={() => {}}
+        onRemoveFromCart={() => {}}
+        onAddToWishlist={() => {}}
+        onRemoveFromWishlist={() => {}}
+        onOpenProduct={() => {}}
+      />
+    );
+
+    const currentPriceSpan = getByText(TEST_PRICE_WITH_DISCOUNT_TEXT);
+    expect(currentPriceSpan).toBeInTheDocument();
+    const oldPriceSpan = getByText(`$${TEST_PRODUCT.price}`);
+    expect(oldPriceSpan).toBeInTheDocument();
+    expect(oldPriceSpan.classList.contains(TEST_OLD_PRICE_CLASS)).toBeTruthy();
+  });
+
+  it("цены со скидкой нет, отображается цена товара", () => {
+    const { getByText } = render(
+      <ProductCard
+        product={TEST_PRODUCT}
+        isProductInCart={false}
+        onAddToCart={() => {}}
+        onRemoveFromCart={() => {}}
+        onAddToWishlist={() => {}}
+        onRemoveFromWishlist={() => {}}
+        onOpenProduct={() => {}}
+      />
+    );
+
+    const currentPriceSpan = getByText(`$${TEST_PRODUCT.price}`);
+    expect(currentPriceSpan).toBeInTheDocument();
+  });
+});
+
+describe("ProductCard: проверка отображения количества комментариев", () => {
+  it("комментариев нет, строка комментариев не отображается", () => {
+    const { queryByTestId } = render(
+      <ProductCard
+        product={{
+          ...TEST_PRODUCT,
+          commentsCount: 0,
+        }}
+        isProductInCart={false}
+        onAddToCart={() => {}}
+        onRemoveFromCart={() => {}}
+        onAddToWishlist={() => {}}
+        onRemoveFromWishlist={() => {}}
+        onOpenProduct={() => {}}
+      />
+    );
+
+    const commentSpan = queryByTestId(TEST_ID_COMMENTS);
+    expect(commentSpan).not.toBeInTheDocument();
+  });
+
+  it("количество комментариев = 10, строка комментариев содержит текст = (10)", () => {
+    const { queryByTestId } = render(
+      <ProductCard
+        product={{
+          ...TEST_PRODUCT,
+          commentsCount: 10,
+        }}
+        isProductInCart={false}
+        onAddToCart={() => {}}
+        onRemoveFromCart={() => {}}
+        onAddToWishlist={() => {}}
+        onRemoveFromWishlist={() => {}}
+        onOpenProduct={() => {}}
+      />
+    );
+
+    const commentSpan = queryByTestId(TEST_ID_COMMENTS);
+    expect(commentSpan?.textContent).toEqual("(10)");
   });
 });
