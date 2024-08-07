@@ -9,6 +9,8 @@ import {
   TEST_PRODUCT,
   TEST_REMOVE_FROM_CART_TEXT,
   TEST_ADD_TO_CART_TEXT,
+  TEST_NEW_TEXT,
+  TEST_DISCOUNT_TEXT,
   TEST_PRICE_WITH_DISCOUNT,
   TEST_PRICE_WITH_DISCOUNT_TEXT,
   TEST_REMOVE_BTN_CLASS,
@@ -16,7 +18,7 @@ import {
 } from "./constants";
 
 describe("ProductCard: проверка компонента на наличие флага isNew", () => {
-  it("карточка продукта имеет лэйбл 'NEW'", () => {
+  it(`карточка продукта имеет элемент с текстом '${TEST_NEW_TEXT}'`, () => {
     const _product: IProductCard = { ...TEST_PRODUCT, isNew: true };
 
     const { getByText } = render(
@@ -30,11 +32,11 @@ describe("ProductCard: проверка компонента на наличие
       />
     );
 
-    const tagNew = getByText("NEW");
-    expect(tagNew).toBeInTheDocument();
+    const elementIncludeTextNew = getByText(TEST_NEW_TEXT);
+    expect(elementIncludeTextNew).toBeInTheDocument();
   });
 
-  it("карточка продукта не имеет лэйбла 'NEW'", () => {
+  it(`карточка продукта не имеет лэйбла '${TEST_NEW_TEXT}'`, () => {
     const _product: IProductCard = { ...TEST_PRODUCT, isNew: false };
 
     const { queryByText } = render(
@@ -48,13 +50,13 @@ describe("ProductCard: проверка компонента на наличие
       />
     );
 
-    const tagNew = queryByText("NEW");
-    expect(tagNew).not.toBeInTheDocument();
+    const elementIncludeTextNew = queryByText(TEST_NEW_TEXT);
+    expect(elementIncludeTextNew).not.toBeInTheDocument();
   });
 });
 
 describe("ProductCard: проверка компонента на наличие скидки", () => {
-  it("карточка продукта имеет указатель скидки = '-15%'", () => {
+  it(`карточка продукта имеет указатель скидки с текстом '${TEST_DISCOUNT_TEXT}'`, () => {
     const _product: IProductCard = { ...TEST_PRODUCT, discountPercentage: 15 };
 
     const { getByText } = render(
@@ -68,8 +70,8 @@ describe("ProductCard: проверка компонента на наличие
       />
     );
 
-    const tagNew = getByText(/-15%/i);
-    expect(tagNew).toBeInTheDocument();
+    const elementIncludeDiscountPercentageText = getByText(TEST_DISCOUNT_TEXT);
+    expect(elementIncludeDiscountPercentageText).toBeInTheDocument();
   });
 
   it("карточка продукта не имеет скидки", () => {
@@ -89,8 +91,8 @@ describe("ProductCard: проверка компонента на наличие
       />
     );
 
-    const tagNew = queryByText(/-[0-9]*%/);
-    expect(tagNew).not.toBeInTheDocument();
+    const elementIncludeDiscountPercentageText = queryByText(/-[0-9]*%/);
+    expect(elementIncludeDiscountPercentageText).not.toBeInTheDocument();
   });
 });
 
