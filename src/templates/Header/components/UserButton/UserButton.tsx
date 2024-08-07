@@ -8,7 +8,7 @@ interface IProps {
 
 export const UserButton = ({ openProfile }: IProps) => {
   return (
-    <RoundButton clickHandle={openProfile} className="user-button">
+    <RoundButton handleClick={openProfile} className="user-button">
       <img
         src={UserLogo}
         alt="user icon"

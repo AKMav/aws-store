@@ -10,7 +10,7 @@ interface IProps {
 
 export const WishlistButton = ({ itemsCount, openWishlist }: IProps) => {
   return (
-    <RoundButton className="wishlist-button" clickHandle={openWishlist}>
+    <RoundButton className="wishlist-button" handleClick={openWishlist}>
       <img
         src={WishlistLogo}
         alt="wishlist button"

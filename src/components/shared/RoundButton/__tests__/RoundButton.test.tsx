@@ -34,7 +34,7 @@ describe("RoundButton testing", () => {
 
   it("обработка клика по кнопке и вызов переданного обработчика клика", () => {
     const { getByRole } = render(
-      <RoundButton clickHandle={mockedClickHandle} />
+      <RoundButton handleClick={mockedClickHandle} />
     );
     const button = getByRole(ROLE_BUTTON);
     fireEvent.click(button);

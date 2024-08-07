@@ -4,16 +4,16 @@ import "./style.scss";
 interface IProps {
   className?: string | null;
   children?: ReactNode;
-  clickHandle?: () => void;
+  handleClick?: () => void;
 }
 
-export const RoundButton = ({ children, className, clickHandle }: IProps) => {
+export const RoundButton = ({ children, className, handleClick }: IProps) => {
   return (
     <button
       className={
         className ? `app-round-button ${className}` : "app-round-button"
       }
-      onClick={clickHandle}
+      onClick={handleClick}
     >
       {children}
     </button>

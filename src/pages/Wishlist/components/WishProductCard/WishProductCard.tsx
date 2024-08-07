@@ -42,7 +42,7 @@ export const WishProductCard = ({
         />
 
         <div className="wish-product-card__buttons">
-          <RoundButton clickHandle={() => onRemoveFromWishlist(id)}>
+          <RoundButton handleClick={() => onRemoveFromWishlist(id)}>
             <img src={DeleteIcon} width={24} height={24} draggable="false" />
           </RoundButton>
         </div>

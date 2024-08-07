@@ -100,19 +100,18 @@ export const ProductCard = ({
           alt={`picture of ${name}`}
           className="product-card__image"
         />
-
         <div className="product-card__buttons">
           <RoundButton
             className={isProductInWishlist ? "button-checked" : null}
-            clickHandle={() => wishlistActionToggle(product)}
+            handleClick={() => wishlistActionToggle(product)}
           >
             <img src={HeartIcon} width={24} height={24} draggable="false" />
           </RoundButton>
-          <RoundButton clickHandle={() => openProduct(id)}>
+          <RoundButton handleClick={() => openProduct(id)}>
             <img src={EyeIcon} width={24} height={24} draggable="false" />
           </RoundButton>
         </div>
-
+        {/* TODO css transition (translateY) */}
         <Fade in={addBtnVisibility} timeout={500}>
           <button
             className={`product-card__cart-button${

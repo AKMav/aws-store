@@ -10,7 +10,7 @@ interface IProps {
 
 export const BuyerCartButton = ({ itemsCount, openCart }: IProps) => {
   return (
-    <RoundButton clickHandle={openCart} className="buyer-cart-button">
+    <RoundButton handleClick={openCart} className="buyer-cart-button">
       <img
         src={CartLogo}
         alt="buyer cart icon"
