@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Fade } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
 import { RoundButton } from "@/components/shared";
 import EyeIcon from "@/assets/icons/eye.svg";
@@ -33,16 +31,6 @@ export const ProductCard = ({
   onRemoveFromWishlist,
   onOpenProduct,
 }: IProps) => {
-  const [addBtnVisibility, setAddBtnVisibility] = useState(false);
-
-  const mouseEnter = () => {
-    setAddBtnVisibility(true);
-  };
-
-  const mouseLeave = () => {
-    setAddBtnVisibility(false);
-  };
-
   const wishlistActionToggle = (product: IProductCard) => {
     if (isProductInWishlist) {
       onRemoveFromWishlist(product.id);
@@ -78,12 +66,7 @@ export const ProductCard = ({
 
   return (
     <div className="product-card">
-      <div
-        className="product-card__main"
-        onMouseEnter={mouseEnter}
-        onMouseLeave={mouseLeave}
-        data-testid={TEST_ID_CARD_MAIN}
-      >
+      <div className="product-card__main" data-testid={TEST_ID_CARD_MAIN}>
         {isNew && (
           <span className="product-card__tag product-card__tag_new">NEW</span>
         )}
@@ -111,18 +94,15 @@ export const ProductCard = ({
             <img src={EyeIcon} width={24} height={24} draggable="false" />
           </RoundButton>
         </div>
-        {/* TODO css transition (translateY) */}
-        <Fade in={addBtnVisibility} timeout={500}>
-          <button
-            className={`product-card__cart-button${
-              isProductInCart ? " product-card__cart-button_remove" : ""
-            }`}
-            data-testid={TEST_ID_ADD_BTN}
-            onClick={() => buyerCartActionToggle(product)}
-          >
-            {isProductInCart ? "Remove From Cart" : "Add To Cart"}
-          </button>
-        </Fade>
+        <button
+          className={`product-card__cart-button${
+            isProductInCart ? " product-card__cart-button_remove" : ""
+          }`}
+          data-testid={TEST_ID_ADD_BTN}
+          onClick={() => buyerCartActionToggle(product)}
+        >
+          {isProductInCart ? "Remove From Cart" : "Add To Cart"}
+        </button>
       </div>
 
       <div className="product-card__footer">
