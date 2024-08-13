@@ -1,5 +1,5 @@
 import { httpClient } from "@/services/axios";
-import { IProductsGetOptions } from "./types";
+import { IProductsGetOptions, IFetchedProduct, PaginateParams } from "./types";
 
 export const fetchProductsByCategory = async (options: IProductsGetOptions) => {
   const searchQuery = {
@@ -13,7 +13,7 @@ export const fetchProductsByCategory = async (options: IProductsGetOptions) => {
   const url = options.category
     ? `/products/category/${options.category}?${params}`
     : `/products/?${params}`;
-  return httpClient.get(url);
+  return httpClient.get<{ products: IFetchedProduct[] } & PaginateParams>(url);
 };
 
 export const getProductById = async (id: string | number) => {

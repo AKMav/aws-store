@@ -2,10 +2,9 @@ import { ProductsList } from "@/components";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { IProductCard } from "@/types/products";
-import { fetchProductsByCategory } from "@/api/products";
+import { fetchProductsByCategory, PaginateParams } from "@/api/products";
 import { formatFetchedProductsForCard } from "@/decorators/productFormatters";
 import { RootState } from "@/store";
-import { AxiosDataResponse, PaginateParams } from "../../types";
 
 interface IFetchProductsProps {
   category: string;
@@ -39,13 +38,13 @@ export const ProductsByCategory = () => {
     setLoading(true);
 
     try {
-      const response = (await fetchProductsByCategory({
+      const response = await fetchProductsByCategory({
         category,
         queries: {
           limit: pagination.limit,
           skip: pagination.skip,
         },
-      })) as AxiosDataResponse;
+      });
 
       const { products, ...respPagination } = response.data;
 

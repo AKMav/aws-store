@@ -6,6 +6,12 @@ export interface IProductsGetOptions {
   };
 }
 
+export type PaginateParams = {
+  total: number;
+  skip: number;
+  limit: number;
+};
+
 export type AvailabilityStatus = "In Stock" | "Low Stock";
 
 export interface IFetchedProduct {
