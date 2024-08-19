@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { render, fireEvent } from "@testing-library/react";
+import { userEvent } from "@vitest/browser/context";
+import { render } from "@testing-library/react";
 import { IProductCard } from "@/types/products";
 import { ProductCard } from "../ProductCard";
 import {
@@ -97,10 +98,10 @@ describe("ProductCard: проверка компонента на наличие
 });
 
 describe("ProductCard: проверка кнопки добавления/удаления из корзины", () => {
-  const SHOW_CLASS = "show";
+  const TRANSITION_DURATION = 300;
 
-  it(`при наведении на карточку товара кнопка addOrRemoveBtn отображается за счет добавления класса '${SHOW_CLASS}' и скрывается при покидании курсора`, () => {
-    const { getByTestId, queryByTestId } = render(
+  it(`при наведении на карточку товара кнопка отображается и скрывается при покидании курсора`, async () => {
+    const { getByTestId, findByTestId } = render(
       <ProductCard
         product={TEST_PRODUCT}
         onAddToCart={() => {}}
@@ -112,11 +113,17 @@ describe("ProductCard: проверка кнопки добавления/уда
     );
 
     const cardMain = getByTestId(TEST_ID_CARD_MAIN);
-    fireEvent.mouseEnter(cardMain);
-    const addRemoveBtn = queryByTestId(TEST_ID_ADD_BTN);
-    expect(addRemoveBtn?.classList.contains(SHOW_CLASS)).toBeTruthy();
-    fireEvent.mouseLeave(cardMain);
-    expect(addRemoveBtn?.classList.contains(SHOW_CLASS)).not.toBeTruthy();
+    // кнопка появляется при наведении
+    await userEvent.hover(cardMain);
+    const addRemoveBtn = await findByTestId(TEST_ID_ADD_BTN);
+    setTimeout(() => {
+      expect(addRemoveBtn).toBeVisible();
+    }, TRANSITION_DURATION);
+    // кнопка скрывается
+    await userEvent.unhover(cardMain);
+    setTimeout(() => {
+      expect(addRemoveBtn).not.toBeVisible();
+    }, TRANSITION_DURATION);
   });
 });
 
