@@ -14,8 +14,10 @@ describe("CategoriesList: отрисовка списка категорий", (
       </Provider>,
       { wrapper: BrowserRouter }
     );
+
     const list = await findByTestId(CategoryListTestId);
-    expect(list).toBeInTheDocument();
+    expect.element(list).toBeInTheDocument();
+
     const loader = queryByTestId(LoaderTestId);
     expect(loader).not.toBeInTheDocument();
   });
@@ -27,8 +29,10 @@ describe("CategoriesList: отрисовка списка категорий", (
       </Provider>,
       { wrapper: BrowserRouter }
     );
+
     const loader = await findByTestId(LoaderTestId);
-    expect(loader).toBeInTheDocument();
+    expect.element(loader).toBeInTheDocument();
+
     const list = queryByTestId(CategoryListTestId);
     expect(list).not.toBeInTheDocument();
   });
