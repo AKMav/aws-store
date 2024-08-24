@@ -98,8 +98,6 @@ describe("ProductCard: проверка компонента на наличие
 });
 
 describe("ProductCard: проверка кнопки добавления/удаления из корзины", () => {
-  const TRANSITION_DURATION = 300;
-
   it(`при наведении на карточку товара кнопка отображается и скрывается при покидании курсора`, async () => {
     const { getByTestId, findByTestId } = render(
       <ProductCard
@@ -113,17 +111,15 @@ describe("ProductCard: проверка кнопки добавления/уда
     );
 
     const cardMain = getByTestId(TEST_ID_CARD_MAIN);
+    const addRemoveBtn = await findByTestId(TEST_ID_ADD_BTN);
+
     // кнопка появляется при наведении
     await userEvent.hover(cardMain);
-    const addRemoveBtn = await findByTestId(TEST_ID_ADD_BTN);
-    setTimeout(() => {
-      expect(addRemoveBtn).toBeVisible();
-    }, TRANSITION_DURATION);
+    expect.element(addRemoveBtn).toBeVisible();
+
     // кнопка скрывается
     await userEvent.unhover(cardMain);
-    setTimeout(() => {
-      expect(addRemoveBtn).not.toBeVisible();
-    }, TRANSITION_DURATION);
+    expect.element(addRemoveBtn).not.toBeVisible();
   });
 });
 
