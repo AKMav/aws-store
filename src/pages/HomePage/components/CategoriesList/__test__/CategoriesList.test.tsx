@@ -3,10 +3,12 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "@/store";
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
+import { worker } from "@/mocks/browser";
 import { CategoryListTestId, LoaderTestId } from "./constants";
 import { CategoriesList } from "../CategoriesList";
 
-describe("CategoriesList: отрисовка списка категорий", () => {
+describe("CategoriesList: отрисовка списка категорий", async () => {
+  await worker.start();
   it("отображается список после загрузки категорий, loader скрыт", async () => {
     const { findByTestId, queryByTestId } = render(
       <Provider store={store}>
