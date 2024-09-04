@@ -12,6 +12,7 @@ import { ProductError } from "../ProductError/ProductError";
 import { ImageSection } from "../ImageSection/ImageSection";
 import { useWishlistActions, useCartActions } from "@/hooks";
 import "./style.scss";
+import { FULLCARD_CONTAINER_TEST_ID } from "./__test__/constants";
 
 interface IProps {
   id?: string;
@@ -79,13 +80,17 @@ export const ProductFullCard = ({ id }: IProps) => {
       {loading ? (
         <div className="product-full-card__spinner-wrapper">
           <Spinner
+            data-testid="test_id_spinner"
             className="product-full-card__spinner"
             animation="grow"
             variant="secondary"
           />
         </div>
       ) : product ? (
-        <Container className="product-full-card">
+        <Container
+          className="product-full-card"
+          data-testid={FULLCARD_CONTAINER_TEST_ID}
+        >
           <Row className="product-full-card__row">
             <Col md={7} className="product-full-card__col">
               <ImageSection
